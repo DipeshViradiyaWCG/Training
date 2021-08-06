@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Register Here...!</title>
+        <link rel="stylesheet" href="job-reg-form.css">
+    </head>
+    <body>
+        <div class="reg-form">
+            <form method="POST" enctype="multipart/form-data">
+                <h2>-: Personal details :-</h2>
+                Name : <input type="text" name="name" placeholder="Enter your name" required/> <br/> 
+                Surname : <input type="text" name="surname" placeholder="Enter your surname" required/> <br/> 
+                Email : <input type="email" name="email" placeholder="abcd@email.com" required/> <br/> 
+                Date Of Birth : <input type="date" name="dob" required/> <br/> 
+                Gender : <input type="radio" name="gender" value="male" /> Male
+                <input type="radio" name="gender" value="female" /> Female
+                <input type="radio" name="gender" value="other" /> Other <br/> 
+                Address : <textarea rows="3" cols="25"></textarea> <br/>
+                Pincode : <input type="number" name="pin" /> <br/>
+                Hobby : <select name="hobby" required>
+                    <option value=" ">Option</option>
+                    <option value="S">Sports</option>
+                    <option value="A">Arts</option>
+                    <option value="C">Coding</option>
+                    <option value="E">Entertainment</option>
+                </select>
+                   
+                <h2>-: Educational details :-</h2>
+                10th marks in % : <input type="number" min="1" max="100" /> <br/> 
+                School name : <input type="text" name="school10th" /> <br/> 
+                12th marks in % : <input type="number" min="1" max="100" /> <br/> 
+                School name : <input type="text" name="school12th" /> <br/> 
+                CGPA in Degree : <input type="number" min="1" max="10" /> <br/> 
+                College name : <input type="text" name="college" /> <br/> 
+                Certificates if any (combined pdf for more than one) : <input type="file" name="certificates" /> <br/> 
+
+                <h2>-: Technical details :-</h2>
+                Programming language : <textarea rows="2" cols="25"></textarea> <br/>
+                Known frameworks : <textarea rows="2" cols="25"></textarea> <br/>
+                Known databases : <textarea rows="2" cols="25"></textarea> <br/>
+                Other skills : <textarea rows="2" cols="25"></textarea>
+
+                <h2>-: Working details :-</h2>
+                Details of Project 1 <br/>
+                Project title : <input type="text" name="pt1"/> <br/>
+                Project description : <textarea rows="3" cols="25"></textarea> <br/>
+                Year : <input type="number" name="py1"/> <br/><br/><br/><br/>
+
+                Details of Project 2 <br/>
+                Project title : <input type="text" name="pt2"/> <br/>
+                Project description : <textarea rows="3" cols="25"></textarea> <br/>
+                Year : <input type="number" name="py2"/> <br/><br/><br/><br/>
+                
+                Past Experience <br/>
+                Company name : <input type="text" name="company-name"/> <br/>
+                Experience in years : <input type="number" name="experience"/> <br/>
+                Post of job : <input type="text" name="company-post"/> <br/>
+                Description : <textarea rows="3" cols="25"></textarea> <br/><br/><br/><br/>
+
+                <input type="submit" name="submit" value="Submit" />
+
+            </form>
+        </div>
+    </body>
+</html>
