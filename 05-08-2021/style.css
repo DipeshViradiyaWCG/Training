@@ -25,3 +25,9 @@ table, th, td {
             .navbar a.present {
                 background-color: #0040ff;
             }
+
+            form {
+                margin-left: 50px;
+                margin-right: 50px;
+                margin-top: 10px;
+            }
