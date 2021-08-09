@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Form 1</title>
+    <style type="text/css">
+        body {
+          background-color: #af5535;
+          color: white;
+          width: 30%;
+        }
+        .mainLabel{
+          text-align: right;
+        }
+        button{
+          text-align: center;
+          border-color: white;
+          background-color: green;
+          margin-left:180px;
+          margin-top: 2%;
+        }
+      </style>
+  </head>
+  <body>
+    <fieldset>
+      <legend><h2>Personal Information</h2> </legend>
+      <table align="center">
+        <tr>
+          <td class="mainLabel">Sex:</td>
+          <td>
+            <input type="radio" name="Male" />Male
+            <input type="radio" name="Female" />Female
+          </td>
+        </tr>
+        <tr>
+          <td class="mainLabel">Birthday:</td>
+          <td>
+            <select>
+              <option>Months</option>
+              <option>Jan</option>
+              <option>Feb</option>
+            </select>
+            <select>
+              <option>Date:</option>
+              <option>1</option>
+              <option>2</option>
+            </select>
+            <select>
+              <option>1975</option>
+              <option>1976</option>
+              <option>1978</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="mainLabel">State:
+          </td>
+          <td>
+            <select>
+              <option>Ohio</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="mainLabel">Country:</td>
+          <td><option>United States</option>
+          </select></td>
+        </tr>
+      </table>
+    </fieldset>
+    <fieldset>
+      <legend><h2>Registration</h2></legend>
+      <table align="center">
+        <tr>
+          <td class="mainLabel">Username:</td>
+          <td><input type="text" name="Username" /></td>
+        </tr>
+        <tr>
+          <td class="mainLabel">Password:</td>
+          <td><input type="text" name="Password" /></td>
+        </tr>
+        <tr>
+          <td class="mainLabel">Retype Password:</td>
+          <td><input type="text" name="Retype" /></td>
+        </tr>
+        <tr>
+          <td class="mainLabel">Email Address:</td>
+          <td><input type="email" name="email" /></td>
+        </tr>
+        <tr>
+          <td class="mainLabel">Retype Email Address:</td>
+          <td><input type="email" name="email" /></td>
+        </tr>
+      </table>
+    </fieldset>
+    <button class="mainLabel" type="button">Submit</button>
+  </body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Form 2</title>
+        <style>
+            div .buttons {
+                margin-top: 2%;
+            }
+            
+        </style>
+    <head>
+    <body bgcolor="#ffff99">
+        <div align='center'>
+        <h1>-:KM Custom HTML Form Example:-</h1>
+            <table border='3' width='40%' bordercolor='black' cellpadding='3'>  
+                <col style="width: 40%;">
+                <col style="width: 60%;">
+                <tr>
+                    <td>Name :</td>
+                    <td><input type="text" name="name" placeholder="Enter your name" required/></td>
+                </tr>
+                <tr>
+                    <td>Email :</td>
+                    <td><input type="email" name="email" placeholder="abcd@email.com" required/></td>
+                </tr>
+                <tr>
+                    <td>Password :</td>
+                    <td><input type="password" name="password" required/></td>             
+                </tr>
+                <tr>
+                    <td>Approval required :<br/>(click the button to check/uncheck)</td>
+                    <td>
+                        <input type="checkbox" name="choice" value="A" /> Do you agree?
+                    </td>
+                </tr>
+                <tr>
+                    <td>Pick Your Favorite :<br/>(click the button or text to select)</td>
+                    <td>
+                        <input type="radio" name="choice" value="A" /> Choice A <br/>
+                        <input type="radio" name="choice" value="B" /> Choice B <br/>
+                        <input type="radio" name="choice" value="C" /> Choice C <br/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Popup menu :</td>
+                    <td>
+                        <select name="city" required>
+                            <option value="T">Texas</option>
+                            <option value="M">Miami</option>
+                            <option value="NY">NY</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        List<br/>
+                        Setup options:<br/>
+                        <ul>
+                            <li>Number of rows display</li>
+                            <li>Allow multiselect</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <select multiple size="5">
+                            <option value="">California -- CA</option>
+                            <option value="">Colorado -- CO</option>
+                            <option value="">Connecticut -- CN</option>
+                            <option value="">Dalifornia -- DA</option>
+                            <option value="">Dolorado -- DO</option>
+                            <option value="">Dolorado -- DO</option>
+                            <option value="">Dolorado -- DO</option>
+                            <option value="">Dolorado -- DO</option>
+                          </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Feild Ignored by KM</td>
+                    <td><input type="number" name="number" placeholder="10,384" required/></td>
+                </tr>
+                <tr>
+                    <td>Text Area :</td>
+                    <td>
+                        <textarea rows="3" cols="75" value="Now is the time for all good men to come to the aid of their country"></textarea>
+                    </td>
+                </tr>
+            </table>
+            <div class="buttons">
+                <input style="background-color: #4575ff; border-radius: 15%; padding: 1%;" type="submit" name="save" value="Save" />
+                <input style="background-color: cornsilk; border-radius: 15%; padding: 1%;" type="submit" name="cancel" value="Cancel" />
+                <input style="background-color: gray; border-radius: 15%; padding: 1%;" type="submit" name="resize" value="Resize" />
+            </div>
+        </div>
+    </body>
+</html>
