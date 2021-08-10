@@ -1,0 +1,35 @@
+.updates {
+    width: 250;
+    float: left;
+    align-items: center;
+    margin-left: 21%;
+}
+.nav {
+    margin-top: 15px;
+    margin-left: 5%;
+}
+.home {
+    width: 550;
+    float: left;
+    align-items: center;
+    margin-left: 3%;
+}
+.content {
+    width: 510;
+    float: left;
+    margin-left: 15px;
+    word-wrap: break-word;
+}
+
+.link1 {
+    color: black;
+}
+
+.footer {
+    margin-top: 53%;
+    background-image: linear-gradient(to right, #ffd8cc,#ffeedb);
+}
+
+.container {
+    overflow: auto;
+}

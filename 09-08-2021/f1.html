@@ -4,9 +4,11 @@
     <title>Form 1</title>
     <style type="text/css">
         body {
-          background-color: #af5535;
+          background-image: linear-gradient(to right,#5b86e5, #36d1dc);
           color: white;
           width: 30%;
+          margin-left: 35%;
+          font-family: 'Open Sans', sans-serif;;
         }
         .mainLabel{
           text-align: right;
@@ -14,14 +16,14 @@
         button{
           text-align: center;
           border-color: white;
-          background-color: green;
+          background-color: rgb(200, 217, 228);
           margin-left:180px;
           margin-top: 2%;
         }
       </style>
   </head>
   <body>
-    <fieldset>
+    <fieldset style="border-color: whitesmoke;">
       <legend><h2>Personal Information</h2> </legend>
       <table align="center">
         <tr>
@@ -67,20 +69,20 @@
         </tr>
       </table>
     </fieldset>
-    <fieldset>
+    <fieldset style="border-color: whitesmoke;">
       <legend><h2>Registration</h2></legend>
       <table align="center">
         <tr>
-          <td class="mainLabel">Username:</td>
+          <td class="mainLabel">User name:</td>
           <td><input type="text" name="Username" /></td>
         </tr>
         <tr>
           <td class="mainLabel">Password:</td>
-          <td><input type="text" name="Password" /></td>
+          <td><input type="password" name="Password" /></td>
         </tr>
         <tr>
           <td class="mainLabel">Retype Password:</td>
-          <td><input type="text" name="Retype" /></td>
+          <td><input type="password" name="Retype" /></td>
         </tr>
         <tr>
           <td class="mainLabel">Email Address:</td>
