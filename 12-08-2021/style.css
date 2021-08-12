@@ -8,7 +8,10 @@ Released for free under a Creative Commons Attribution 2.5 License
 body {
 	margin: 0;
 	padding: 0;
-	background-image: linear-gradient(to right,#e911e9, #9a11e9);
+	/*background-image: linear-gradient(to right,#e911e9, #9a11e9);*/
+	/*background-color: #3f095f;*/
+	background: #314755;
+	background: linear-gradient(to left, #5fb5dd, #1c587e); 
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	color: #3B3B3B;
