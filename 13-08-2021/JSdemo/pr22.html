@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <h3>22.	Make a simple calculator using switch case.
+        a.	1.Addition
+        b.	2.Subtraction
+        c.	3.Multiplication
+        d.	4.Division
+        </h3>
+    <h2>OUTPUT:</h2>
+    
+    
+</body>
+<script type="text/javascript">
+    /* 22.	Make a simple calculator using switch case.
+        a.	1.Addition
+        b.	2.Subtraction
+        c.	3.Multiplication
+        d.	4.Division
+ */
+    var no1 = Number(prompt("Enter your number 1 : "));
+    var no2 = Number(prompt("Enter your number 2 : "));
+    var cal = prompt("Enter your calculation in form of +  -  *  / : ");
+    document.write("<h3> Number 1 : " + no1 + "</h3>");
+    document.write("<h3> Number 2 : " + no2 + "</h3>");
+    document.write("<h3> operation :" + cal + "</h3>");
+    var ans;
+
+        
+            switch (cal) {
+            case "+":
+                ans = no1 + no2;
+                break;
+            case "-":
+                ans = no1 - no2;;
+                break;
+            case "*":
+                ans = no1 * no2;
+                break;
+            case "/":
+                if(no2 != 0){
+                    ans = no1 / no2;
+                } else {
+                    document.write("<h3> Division is not possible. </h3>")
+                }
+                break;
+
+            default:
+                ans = "Enter Valid Operation";
+            }
+    document.write("<h3>Answer is "+ans+" </h3>");
+
+</script>
+</html>

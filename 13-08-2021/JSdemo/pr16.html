@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <h3>15.	Take 3 numbers and find greatest number using nested IF….ELSE statement.</h3>
+    <h2>OUTPUT:</h2>
+    
+    
+</body>
+<script type="text/javascript">
+    /* 15.	Take 3 numbers and find greatest number using nested IF….ELSE statement. */
+    var no1 = Number(prompt("Enter the number 1 : "));
+    var no2 = Number(prompt("Enter the number 2 : "));
+    var no3 = Number(prompt("Enter the number 3 : "));
+    var ans;
+    if((no1 < no2) && (no1 < no3)){
+        ans = "Number 1 is smallest";
+    } else if ((no2 < no1) && (no2 < no3)){
+        ans = "Number 2 is smallest";
+    } else {
+        ans = "Number 3 is smallest";
+    }
+    document.write("<h3> "+ans+" </h3>");
+
+</script>
+</html>

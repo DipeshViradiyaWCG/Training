@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <h3>24.	Take starting number and ending number from the user and print following series.
+        Output :-
+        Enter starting number : 30
+        Enter ending number : 0
+        30
+         27
+         24
+         21
+         18
+         15
+         12
+         9
+         6
+         3
+         0
+        </h3>
+    <h2>OUTPUT:</h2>
+    
+    
+</body>
+<script type="text/javascript">
+    /* 24.	Take starting number and ending number from the user and print following series.
+        Output :-
+        Enter starting number : 30
+        Enter ending number : 0
+        30
+        27
+        24
+        21
+        18
+        15
+        12
+        9
+        6
+        3
+        0
+        */
+    var nos = Number(prompt("Enter the starting number : "));
+    var noe = Number(prompt("Enter the ending number : "));
+    for (let index = nos; index >= noe; index-=3) {
+        document.write("<h3>"+index+" </h3>");   
+    }
+
+</script>
+</html>

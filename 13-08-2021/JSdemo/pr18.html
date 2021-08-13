@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <h3>18.	Write a program to check whether character is alphabet or not.</h3>
+    <h2>OUTPUT:</h2>
+    
+    
+</body>
+<script type="text/javascript">
+    /*18.	Write a program to check whether character is alphabet or not.. */
+    var ch = prompt("Enter the character : ");
+    var ans;
+    var n = ch.charCodeAt(0);
+    if((n >= 65 && n < 91) || (n >= 97 && n < 123)){
+        ans = "alphabet";
+    } else {
+        ans = "not an alphabet";
+    }
+    document.write("<h3> Entered character is "+ ans +"</h3>");
+
+</script>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <h3>6.	Take a year and check whether it is leap year or not</h3>
+    <h2>OUTPUT:</h2>
+    
+    
+</body>
+<script type="text/javascript">
+    /* 6.	Take a year and check whether it is leap year or not */
+    var year = Number(prompt("Enter the year : "));
+    var ans;
+    if((year%4 == 0 && year%100 != 0) || year%400 == 0){
+        ans = "leap year";
+    } else {
+        ans = "not a leap year";
+    }
+    document.write("<h3>Entered year is "+ans+" </h3>");
+
+</script>
+</html>

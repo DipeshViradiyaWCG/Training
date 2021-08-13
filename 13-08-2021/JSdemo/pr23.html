@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <h3>23.	Take 5 numbers and calculate percentage. According to that percentage print grade.
+        •	If marks <50 then Grade is F.
+        •	if marks >=50 <60 then Grade is D.
+        •	if marks >=60 <70 then Grade is C.
+        •	if marks >=70 <80 then Grade is B.
+        •	if marks >=80 <90 then Grade is A.
+        •	if marks >=90 then Grade is A+
+        </h3>
+    <h2>OUTPUT:</h2>
+    
+    
+</body>
+<script type="text/javascript">
+    /* 23.	Take 5 numbers and calculate percentage. According to that percentage print grade.
+•	If marks <50 then Grade is F.
+•	if marks >=50 <60 then Grade is D.
+•	if marks >=60 <70 then Grade is C.
+•	if marks >=70 <80 then Grade is B.
+•	if marks >=80 <90 then Grade is A.
+•	if marks >=90 then Grade is A+
+
+ */
+    var no1 = Number(prompt("Enter your number 1 : "));
+    var no2 = Number(prompt("Enter your number 2 : "));
+    var no3 = Number(prompt("Enter your number 3 : "));
+    var no4 = Number(prompt("Enter your number 4 : "));
+    var no5 = Number(prompt("Enter your number 5 : "));
+
+    document.write("<h3> Mark 1 : " + no1 + "</h3>");
+    document.write("<h3> Mark 2 : " + no2 + "</h3>");
+    document.write("<h3> Mark 3 : " + no3 + "</h3>");
+    document.write("<h3> Mark 4 : " + no4 + "</h3>");
+    document.write("<h3> Mark 5 : " + no5 + "</h3>");
+
+    var percentage = (no1+no2+no3+no4+no5)/5;
+
+    if (percentage < 50) ans = "F";
+    else if (percentage >= 50 && percentage < 60) ans = "D";
+    else if (percentage >= 60 && percentage < 70) ans = "C";
+    else if (percentage >= 70 && percentage < 80) ans = "B";
+    else if (percentage >= 80 && percentage < 90) ans = "A";
+    else if (percentage > 90) ans = "A+";
+
+    document.write("<h3>The result is "+ans+" </h3>");
+
+</script>
+</html>
