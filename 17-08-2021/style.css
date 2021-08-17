@@ -1,0 +1,40 @@
+td:nth-child(1) {
+    width: 40%;
+    height: 5px;
+    text-align: right;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+td:nth-child(2) {
+    width: 60%;
+    height: 5px;
+    text-align: left;
+}
+.btn {
+    
+    background-color: #9b8d9c; 
+    border-radius: 7px; 
+    padding: 1%;
+    margin-left: 45%;
+}
+
+h2 {
+    text-align: center;
+}
+
+table {
+    margin-left: 35%;
+}
+
+span {
+    color: red;
+}
+
+body {
+    background-color:#9ed7ee;
+}
+
+select {
+    width: 175px;
+}

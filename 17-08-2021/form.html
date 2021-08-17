@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form with validation</title> 
+    <link href="style.css" rel="stylesheet" type="text/css" />   
+</head>
+<body>
+    <h2>-:: Enter Your details ::-</h2>
+    <form>
+        <table cellpadding="2" cellspacing="5">
+            <tr>
+                <td>Name : </td>
+                <td><input name="name" id="name" placeholder="Enter your name" onblur="validatename()"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span id="sname"></span></td>
+            </tr>
+            <tr>
+                <td>Email : </td>
+                <td><input name="email" id="email" placeholder="abcd@email.com" onblur="validateemail()" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span id="semail"></span></td>
+            </tr>
+            <tr>
+                <td>Gender : </td>
+                <td><input type="radio" name="gender" value="male" checked/> Male
+                    <input type="radio" name="gender" value="female" /> Female
+                    <input type="radio" name="gender" value="other" /> Other</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span id="sgender"></span></td>
+            </tr>
+            <tr>
+                <td>Phone no. : </td>
+                <td><input name="phone" id="phone" type="number" onblur="validatephone()" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span id="sphone"></span></td>
+            </tr>
+            <tr>
+                <td>City : </td>
+                <td><select name="city" id="city">
+                    <option value="">select</option>
+                    <option value="amr">Amreli</option>
+                    <option value="amd">Ahmedabad</option>
+                    <option value="srt">Surat</option>
+                    </select></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span id="scity"></span></td>
+            </tr>
+            <tr>
+                <td>Password : </td>
+                <td><input name="pass" type="password" id="pass" onblur="validatepass()" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span id="spass"></span></td>
+            </tr>
+            <tr>
+                <td>Re-enter password : </td>
+                <td><input name="repass" type="password" id="repass" onblur="validaterepass()" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span id="srepass"></span></td>
+            </tr>
+            
+        </table>
+        <div>
+            <input type="submit" name="submit" class="btn" />
+        </div>
+
+    </form>
+    <script src="app.js"></script>
+</body>
+</html>
