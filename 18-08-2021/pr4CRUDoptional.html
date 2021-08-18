@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD</title>
+    <style>
+        div {
+            margin-left: 5%;
+            margin-top: 5%;
+        }
+        input {
+            height: 25px;
+        }
+        button {
+            margin-left: 5px;
+            background-color: burlywood;
+            border-radius: 5px;
+            padding: 7px;
+        }
+        li {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+<body onload ="fetchData()">
+    <div id="content">
+    <input type="text" name="task" id="task" placeholder=" Enter your task ..." />
+    <button onclick="submit()" title="Submit your task">Submit</button>
+    <button onclick="reset()" title="Reset the application...">Reset</button>
+    <br/>
+    <ol id="tasklist">
+
+    </ol>
+    </div>
+</body>
+<script>
+    
+    function fetchData() {
+        
+        if (!localStorage.getItem("data")) {
+            localStorage.setItem("data", JSON.stringify({}));
+        }
+        var object = JSON.parse(localStorage.getItem("data"));
+        var keys = Object.keys(object);
+        if(keys.length){
+            for (let key in keys) {
+                document.getElementById("tasklist").appendChild(document.createElement("li")).innerHTML = object[key] + `   <button id=\"${keys[key]}\">Delete</button>`;
+            }
+        }
+    }
+
+    function submit() {
+        var task = document.getElementById("task").value.trim();
+        if (task.length != 0) {
+            var tempobj = JSON.parse(localStorage.getItem("data"));
+            var keys = Object.keys(tempobj);
+            console.log(keys);
+            var maxkey;
+            if(keys.length) {
+                maxkey = Math.max(keys) + 1;
+                console.log(maxkey);
+            } else {
+                maxkey = 0;
+            }
+            document.getElementById("tasklist").appendChild(document.createElement("li")).innerHTML = task + `   <button id=\"${maxkey}\" onclick=\"deletetask(${maxkey})\">Delete</button>`;
+            tempobj[maxkey] = task;
+            localStorage.setItem("data",JSON.stringify(tempobj));
+            document.getElementById("task").value = "";
+        }
+    }
+
+    function deletetask(a) {
+        var tempobj = JSON.parse(localStorage.getItem("data"));
+        delete tempobj[a];
+        localStorage.setItem("data",JSON.stringify(tempobj));
+        location.reload();
+
+    }
+
+    function reset() {
+        var temp = confirm("Resetting the web app will delete the local data...");
+        if (temp){
+            document.getElementById("tasklist").innerText = "";
+            document.getElementById("task").value = "";
+            localStorage.removeItem("data");
+            localStorage.setItem("data", JSON.stringify({}));
+        }
+    }
+</script>
+</html>

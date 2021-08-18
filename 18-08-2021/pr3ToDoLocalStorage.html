@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple To Do</title>
+    <style>
+        div {
+            margin-left: 5%;
+            margin-top: 5%;
+        }
+        input {
+            height: 25px;
+        }
+        button {
+            margin-left: 5px;
+            background-color: burlywood;
+            border-radius: 5px;
+            padding: 7px;
+        }
+        li {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+<body onload ="fetchData()">
+    <div id="content">
+    <input type="text" name="task" id="task" placeholder=" Enter your task ..." />
+    <button onclick="submit()" title="Submit your task">Submit</button>
+    <button onclick="reset()" title="Reset the application...">Reset</button>
+    <br/>
+    <ol id="tasklist">
+
+    </ol>
+    </div>
+</body>
+<script>
+    
+    function fetchData() {
+        
+        if (!localStorage.getItem("data")) {
+            localStorage.setItem("data", JSON.stringify({tasks : [],}));
+        }
+        var object = JSON.parse(localStorage.getItem("data"));
+        var tasksShow = object.tasks;
+        if(tasksShow.length){
+            for(let i = 0; i < tasksShow.length; i++) {
+                document.getElementById("tasklist").appendChild(document.createElement("li")).innerText = tasksShow[i];
+            }
+        }
+    }
+
+    function submit() {
+        var task = document.getElementById("task").value.trim();
+        if (task.length != 0) {
+            document.getElementById("tasklist").appendChild(document.createElement("li")).innerText = task;
+            var tasksSubmit = JSON.parse(localStorage.getItem("data")).tasks;
+            tasksSubmit.push(task);
+            localStorage.setItem("data",JSON.stringify({tasks : tasksSubmit,}));
+            document.getElementById("task").value = "";
+            //console.log(localStorage.data + " " + typeof(localStorage.data));
+        }
+    }
+
+    function reset() {
+        var temp = confirm("Resetting the web app will delete the local data...");
+        if (temp){
+            document.getElementById("tasklist").innerText = "";
+            document.getElementById("task").value = "";
+            localStorage.removeItem("data");
+            localStorage.setItem("data", JSON.stringify({tasks : [],}));
+        }
+    }
+</script>
+</html>

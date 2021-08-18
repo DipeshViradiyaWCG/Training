@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <style>
+        button {
+            margin-left: 5px;
+            background-color: burlywood;
+            border-radius: 5px;
+            padding: 7px;
+        }
+        h2 {
+            margin-left: 60px;
+        }
+        .content {
+            margin-left: 5%;
+            margin-top: 5%;
+        }
+        img {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <button onclick="increase()">Increase Counter</button>
+        <h2 id="h2">0</h2>
+        <button onclick="decrease()">Increase Counter</button>
+        
+    </div>
+    <div class="heart">
+
+    </div>
+</body>
+<script>
+    function increase() {
+        var a = Number(document.getElementById("h2").innerText);
+        document.getElementById("h2").innerText = a+1 ;
+        document.getElementsByClassName("heart")[0].innerHTML += "<img src=\"heart.png\">"
+    }
+    function decrease() {
+        var a = Number(document.getElementById("h2").innerText);
+        document.getElementById("h2").innerText = a-1 ;
+        document.getElementsByClassName("heart")[0].innerHTML = document.getElementsByClassName("heart")[0].innerHTML.slice(0,-19);
+    }
+    
+    
+</script>
+</html>
