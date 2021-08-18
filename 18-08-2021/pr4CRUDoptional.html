@@ -25,7 +25,7 @@
         }
     </style>
 </head>
-<body onload ="fetchData()">
+<body onload="fetchData()">
     <div id="content">
     <input type="text" name="task" id="task" placeholder=" Enter your task ..." />
     <button onclick="submit()" title="Submit your task">Submit</button>
@@ -42,12 +42,13 @@
         
         if (!localStorage.getItem("data")) {
             localStorage.setItem("data", JSON.stringify({}));
+            return;
         }
         var object = JSON.parse(localStorage.getItem("data"));
         var keys = Object.keys(object);
         if(keys.length){
             for (let key in keys) {
-                document.getElementById("tasklist").appendChild(document.createElement("li")).innerHTML = object[key] + `   <button id=\"${keys[key]}\">Delete</button>`;
+                document.getElementById("tasklist").appendChild(document.createElement("li")).innerHTML = object[key] + `   <button id=\"${[key]}\" onclick=\"deletetask(${[key]})\">Delete</button>`;
             }
         }
     }
@@ -57,10 +58,15 @@
         if (task.length != 0) {
             var tempobj = JSON.parse(localStorage.getItem("data"));
             var keys = Object.keys(tempobj);
-            console.log(keys);
+            
             var maxkey;
-            if(keys.length) {
-                maxkey = Math.max(keys) + 1;
+            keys = keys.map((value) => {
+                return Number(value);
+            });
+            console.log(keys +" " + typeof(keys[1]));
+            if(keys.length > 0) {
+                keys.sort();
+                maxkey = keys[keys.length - 1] + 1;
                 console.log(maxkey);
             } else {
                 maxkey = 0;
@@ -74,11 +80,13 @@
 
     function deletetask(a) {
         var tempobj = JSON.parse(localStorage.getItem("data"));
-        delete tempobj[a];
+        console.log(a);
+        delete tempobj[String(a)];
         localStorage.setItem("data",JSON.stringify(tempobj));
         location.reload();
-
+        
     }
+
 
     function reset() {
         var temp = confirm("Resetting the web app will delete the local data...");
