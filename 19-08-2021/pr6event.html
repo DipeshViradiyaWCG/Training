@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event</title>
+    <style>
+        .top {
+            width: 1000px;
+            height: 500px;
+            background-color: tan;
+        }
+        .middle {
+            width: 500px;
+            height: 250px;
+            background-color: turquoise;
+            margin-top: 10px;
+        }
+        .down {
+            width: 250px;
+            height: 125px;
+            background-color: violet;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top" id="top">
+        in div top
+        <div class="middle" id="middle">
+            in div middle
+            <div class="down" id="down">
+                in div down
+                <p id="pid">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam saepe adipisci quae corporis placeat voluptates modi ducimus ut quos omnis.</p>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    document.getElementById("top").addEventListener("click",() => alert("div top clicked..."));
+    document.getElementById("middle").addEventListener("click",() => alert("div middle clicked..."));
+    document.getElementById("down").addEventListener("click",(e) => {
+        alert("div down clicked...");
+        e.stopPropagation();
+    });
+    document.getElementById("pid").addEventListener("click",() => alert("paragraph clicked..."));
+
+</script>
+</html>

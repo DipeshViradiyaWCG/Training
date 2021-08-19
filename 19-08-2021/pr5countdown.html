@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Count down</title>
+    <style>
+        .container {
+            text-align: center;
+            margin-top: 5%;
+        }
+        button {
+            background-color: tan;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        body {
+            background-image:linear-gradient(to right,#1cdae7 ,#6cb8eb);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button id="btn-start">START</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button id="btn-stop">STOP</button>
+        <h1 id="time"></h1>
+        <br/>
+        <button id="btn-reset">RESET</button>
+    </div>
+</body>
+<script>
+    var stoptime = true;
+    document.getElementById("btn-start").addEventListener("click",startTime);
+    document.getElementById("btn-stop").addEventListener("click",stopTime);
+    document.getElementById("btn-reset").addEventListener("click",resetTime);
+    document.getElementById("time").innerText = prompt("Enter the seconds you want for countdown...");
+
+    function startTime() {
+        if (stoptime == true) {
+            stoptime = false;
+            timerCycle();
+        }
+    }
+    function stopTime() {
+        if (stoptime == false) {
+            stoptime = true;
+        }
+    }
+
+    function timerCycle() {
+        if (stoptime == false) {
+            var n = Number(document.getElementById("time").innerText);
+            if(n > 0){
+                document.getElementById("time").innerText = n-1;
+            }
+            var x = setTimeout("timerCycle()", 1000);
+        }
+    }
+
+    function resetTime() {
+        document.getElementById("time").innerText = "";
+        location.reload();
+    }
+    
+</script>
+</html>

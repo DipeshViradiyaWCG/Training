@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text box</title>
+    <style>
+        td:nth-child(1) {
+            width: 40%;
+            text-align: right;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        
+        td:nth-child(2) {
+            width: 60%;
+            text-align: left;
+        }
+        .btn {
+            
+            background-color: grey; 
+            border-radius: 7px; 
+            padding: 1%;
+            margin-left: 17%;
+            margin-top: 2%;
+            
+            color: lightgoldenrodyellow;
+        }
+        .container {
+            margin-left: 30%;
+            margin-top: 2%;
+        }
+        body {
+            color:whitesmoke;
+            background-image:url("img/p5.jfif");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .input-css {
+            border-radius: 10px;
+            outline: none;
+            height: 25px;
+            width: 250px;
+            
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form>
+            <table cellpadding="2" cellspacing="5" class="bg-color blurred-box">
+                <tr>
+                    <td>Name : </td>
+                    <td><input type="text" name="name" placeholder="Enter your name" class="input-css" required/></td>
+                </tr>
+                <tr>
+                    <td>Surname : </td>
+                    <td><input type="text" name="surname" placeholder="Enter your surname" class="input-css" required/></td>
+                </tr>
+                <tr>
+                    <td>Email : </td>
+                    <td><input type="email" name="email" placeholder="abcd@email.com" class="input-css" required/></td>
+                </tr>
+                <tr>
+                    <td>Date Of Birth : </td>
+                    <td><input type="date" name="dob" class="input-css" required style="width: 250px;"/></td>
+                </tr>
+                <tr>
+                    <td>Gender : </td>
+                    <td><input type="radio" name="gender" value="male" /> Male
+                        <input type="radio" name="gender" value="female" /> Female
+                        <input type="radio" name="gender" value="other" /> Other</td>
+                </tr>
+                <tr>
+                    <td>Address 1 : </td>
+                    <td><input type="text" name="address1" placeholder="Flat, House no, Building, Company" class="input-css" required /></td>
+                </tr>
+                <tr>
+                    <td>Address 2 : </td>
+                    <td><input type="text" name="address2" placeholder="Area, Colony, Street" class="input-css" required/>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Country : </td>
+                    <td><select name="country" class="input-css" style="width: 250px; height: 25px;">
+                        <option value="">select</option>
+                        <option value="amr">America</option>
+                        <option value="india">india</option>
+                        <option value="Uk">Uk</option>
+                        <option value="canada">Canada</option>
+                        </select></td>
+                </tr>                    
+            </table>
+            <div class="btndiv">
+                <input type="submit" name="submit" class="btn">
+            </div>
+        </form>
+    </div>
+</body>
+<script>
+    var inputs = document.getElementsByClassName("input-css");
+    for (let i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener("focus", () => {
+            inputs[i].style = "border-color: blueviolet; border-size: 5px; border-style: solid; background-color: rgb(149, 225, 224);";
+        })
+    }
+    for (let i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener("blur", () => {
+            inputs[i].style = "border-size: 0px;";
+        })
+    }
+    for (let i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener("mouseover", () => {
+            inputs[i].style = "border-color: sienna; border-size: 5px; border-style: solid;";
+        })  
+    }
+    for (let i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener("mouseout", () => {
+            inputs[i].style = "border-size: 0px;";
+        })  
+    }
+</script>
+</html>

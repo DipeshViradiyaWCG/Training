@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text JS</title>
+    <style>
+        .div-content {
+            text-align: center;
+            margin-top: 5%;
+        }
+        .p-content {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 25px;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="div-content" id="divid">
+        <p class="p-content" id="pid">
+            The default p tag.
+        </p>
+    </div>
+</body>
+
+<script>  
+    var pobj = document.getElementById("pid");
+    pobj.addEventListener("click" ,() => {
+        pobj.style = "font-size: 35px; font-style: oblique; color: darkmagenta; background-color: darkturquoise;"
+        pobj.innerText = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit quasi magni, cum nesciunt sapiente praesentium. Eligendi numquam dolores voluptates eos omnis fugiat illum error iure reiciendis, obcaecati earum quasi totam.";
+    });
+    pobj.addEventListener("mousemove" ,() => {
+        pobj.style = "font-size: 40px; color: darkmagenta; background-color: darkseagreen; font-style: normal; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;";
+        pobj.innerText = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit quasi magni, cum nesciunt sapiente praesentium. Eligendi numquam dolores voluptates eos omnis fugiat illum error iure reiciendis, obcaecati earum quasi totam."; 
+    });
+    pobj.addEventListener("dblclick" ,() => {
+        pobj.style = "font-size: 30px; color: darkmagenta; background-color:darkkhaki; font-style: italic; font-family:'Times New Roman', Times, serif;";
+        pobj.innerText = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit quasi magni, cum nesciunt sapiente praesentium. Eligendi numquam dolores voluptates eos omnis fugiat illum error iure reiciendis, obcaecati earum quasi totam."; 
+    });
+    pobj.addEventListener("contextmenu" ,() => {
+        pobj.style = "font-size: 45px; color: darkmagenta; background: rgb(53,97,95); background: linear-gradient(90deg, rgba(53,97,95,1) 0%, rgba(9,121,110,0.9248074229691877) 23%, rgba(0,212,255,1) 100%); font-style: italic; font-family:'Times New Roman', Times, serif;";
+        pobj.innerText = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit quasi magni, cum nesciunt sapiente praesentium. Eligendi numquam dolores voluptates eos omnis fugiat illum error iure reiciendis, obcaecati earum quasi totam."; 
+    });
+
+</script>
+</html>
