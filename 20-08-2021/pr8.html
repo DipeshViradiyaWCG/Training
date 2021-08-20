@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pr8</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script> 
+    $(document).ready(function(){
+        $("#btn").click(function(){
+            $("#div1").animate({
+                left: '400px',
+                opacity: '0.5',
+                height: '300px',
+                width: '300px'
+            });
+            $("#div2").animate({
+                right: '400px',
+                opacity: '0.5',
+                height: '400px',
+                width: '400px'
+            });
+        });
+    });  
+    </script>  
+    <style>   
+        #div1 {  
+            padding: 5px;    
+            background-color: gold;  
+            border: solid 1px lawngreen;  
+        }  
+        #div2 {  
+            padding: 50px;  
+            background-color: cornflowerblue;
+        }  
+    </style> 
+</head>
+<body>
+    <div id="div1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus aliquid molestias nihil at odio ex aperiam dolores culpa, in ipsam.</div>  
+    <div id="div2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos, velit eius voluptate facere, ex eligendi soluta ea illo ducimus magnam, et eum tempora possimus repellendus.</div>  
+    <br/>
+    <br/>
+    <br/>
+    <button id="btn">Click here...</button>
+
+</body>
+</html>

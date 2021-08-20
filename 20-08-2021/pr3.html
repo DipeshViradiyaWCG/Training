@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pr3</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type = "text/javascript" language = "javascript">
+        $(document).ready(function() {
+            $(".faded").click(function () {
+                $(this).fadeOut("slow");
+            });
+        });
+    </script>
+
+    <style>
+        .faded{ 
+            margin:15px;
+            padding:18px; 
+            border:3px solid #1e45e9; 
+            width:100px;
+        }
+    </style>
+</head>
+<body>
+    <p>Fade out effects:</p>
+    <span id = "result"> </span>
+    
+    <div class = "faded" style = "background-color:#45e467;"></div>
+    <div class = "faded" style = "background-color:#7867f4"></div>
+    <div class = "faded" style = "background-color:darkgrey"></div>
+</body>
+</html>
