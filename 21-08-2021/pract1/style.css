@@ -1,0 +1,43 @@
+#form1 td:nth-child(1) {
+    width: 40%;
+    height: 5px;
+    text-align: right;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+#form1 td:nth-child(2) {
+    width: 60%;
+    height: 5px;
+    text-align: left;
+}
+
+.btn {
+    background-color: #a497a5; 
+    border-radius: 7px; 
+    padding: 1%;
+    margin-left: 47%;
+}
+
+h2 {
+    text-align: center;
+}
+
+#form1 {
+    margin: auto;
+}
+.form1 {
+    align-items: center;
+    color: rgb(0, 0, 0);
+    filter: contrast(2);
+}
+
+span {
+    color: rgb(0, 0, 0);
+}
+body{
+    background: linear-gradient(to right, #2980b9, #6dd5fa, #ffffff);
+}
+select {
+    width: 175px;
+}

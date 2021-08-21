@@ -1,0 +1,40 @@
+.container {
+    text-align: center;
+}
+
+#form1 {
+    margin: auto;
+}
+
+.btn {
+    margin-top: 10px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#form1 td:nth-child(1) {
+    width: 40%;
+    height: 5px;
+    text-align: right;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+#form1 td:nth-child(2) {
+    width: 60%;
+    height: 5px;
+    text-align: left;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.container {
+    color: whitesmoke;
+}
+
+body {
+    background-image: url("bgpic.jfif");
+    background-size: cover;
+}
+
+
+
