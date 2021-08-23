@@ -36,5 +36,9 @@ body {
     background-size: cover;
 }
 
+label {
+    color: red;
+}
+
 
 

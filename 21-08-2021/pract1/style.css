@@ -41,3 +41,7 @@ body{
 select {
     width: 175px;
 }
+
+#commentForm label {
+    color: red;
+}

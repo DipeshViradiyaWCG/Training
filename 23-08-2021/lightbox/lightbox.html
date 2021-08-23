@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <title>Lightbox</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="lightbox2-2.11.3/lightbox2-2.11.3/dist/css/lightbox.min.css">
+  <style>
+      .thumb{
+          width: 200px;
+          height: 100px;
+      }
+  </style>
+</head>
+<body>
+
+  <section>
+    <h3>Example of lightbox</h3>
+    <div>
+      <a class="example-image-link" href="img/p1.jfif" data-lightbox="example-set" data-title="Nature is beautiful"><img class="example-image thumb" src="img/p1.jfif" alt=""/></a>
+      <a class="example-image-link" href="img/p2.jfif" data-lightbox="example-set" data-title="Nature is beautiful"><img class="example-image thumb" src="img/p2.jfif" alt="" /></a>
+      <a class="example-image-link" href="img/p3.jfif" data-lightbox="example-set" data-title="Nature is beautiful"><img class="example-image thumb" src="img/p3.jfif" alt="" /></a>
+      <a class="example-image-link" href="img/p4.jfif" data-lightbox="example-set" data-title="Nature is beautiful"><img class="example-image thumb" src="img/p4.jfif" alt="" /></a>
+      <a class="example-image-link" href="img/p5.jfif" data-lightbox="example-set" data-title="Nature is beautiful"><img class="example-image thumb" src="img/p5.jfif" alt="" /></a>
+    
+    </div>
+  </section>
+
+  <script src="lightbox2-2.11.3/lightbox2-2.11.3/dist/js/lightbox-plus-jquery.min.js"></script>
+    <script>
+        $().ready(function () {
+            lightbox.option({
+            'resizeDuration': 500,
+            'wrapAround': true,
+            'fadeDuration': 200,
+            'maxWidth' : 1000,
+    
+            })    
+        });
+        
+    </script>
+
+</body>
+</html>
