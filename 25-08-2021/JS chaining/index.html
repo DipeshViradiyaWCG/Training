@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Object chaining
+
+    <script>
+        var Obj = {
+            result: 0,
+            Calc: function(a) {     
+                this.result = a;
+                return this;
+            },
+            add: function(a) {
+                this.result += a; 
+                return this;
+            },
+            mul: function(a) {
+                this.result *= a;
+                return this;
+            },
+            sub: function(a) {
+                this.result -= a;
+                return this;
+            },
+            div: function(a) {
+                this.result /= a;
+                return this;
+            }, 
+            toString: function () {
+                return this.result;
+            },
+        };
+	
+	var obj = Obj.Calc(10).add(50).mul(30).div(40).sub(20);
+        alert(obj); 
+        
+
+
+        
+    </script>
+</body>
+</html>
