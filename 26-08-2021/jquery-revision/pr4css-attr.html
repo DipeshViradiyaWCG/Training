@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css / attr</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <style>
+    div {
+        padding: 10px;
+        margin: 10px;
+        border: 1px solid black;
+        
+        /* background-color:cyan; */
+    }
+
+    .border-green {
+        border: 3px solid green;
+    }
+    .border-brown {
+        border: 3px solid sienna;
+    }
+    
+    </style>
+</head>
+<body>
+
+    <h1>Header 1</h1>
+    <h2>Header 2</h2>
+    <div class="div1" title="div 1 title" title="div1 title">
+        div1
+        <div class="1-1">
+            div 1-1
+            <div class="1-1-1">
+                div 1-1-1<br/>
+                <table>
+                    <tr>
+                        <td>1</td>
+                        <td>abc</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>def</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>ghi</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <p class="1-1-1">
+                p 1-1-1
+            </p>
+        </div>
+        <p class="1-1">
+            p 1-1
+        </p>
+    </div>
+
+    <br/>
+
+    <p class="p1">
+        p1
+    </p>
+
+    <br/>
+
+    <div class="div2">
+        div2
+        <div class="2-1">
+            div 2-1
+            <select id="single">
+                <option>Single</option>
+                <option>Single2</option>
+            </select>
+        </div>
+        <p class="2-1">
+            p 2-1
+        </p>
+    </div>
+
+    <br/>
+
+    <p class="p2">
+        p2
+    </p>
+
+    <br/>
+    
+    <div class="div3">
+        div3
+        <div class="3-1">
+            div 3-1
+        </div>
+        <p class="3-1">
+            p 3-1
+        </p>
+    </div>
+
+    <br/>
+    
+    <p class="p3" id="p3">
+        p3
+    </p>
+
+
+    <script>
+        $().ready(function () {
+            //css attr
+            $( "div.1-1-1" ).text( $( ".div1" ).attr( "title" )); 
+            $( ".div1" ).removeAttr( "title" );
+            $( "select" ).change(() => $(".2-1").html($( "#single" ).val()));
+            $( "div.1-1" ).addClass( "border-green" );
+            $( "p.2-1" ).text( $("div.2-1").height());
+
+
+
+        });
+    </script>
+</body>
+</html>
