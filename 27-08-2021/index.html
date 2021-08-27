@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form</title>
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+    <link rel="stylesheet" href="user-friendly-time-picker/user-friendly-time-picker/src/css/timepicker.css">
+    <link rel="stylesheet" href="lightbox/dist/css/lightbox.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css" />
+    <!--jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!--jquery validate-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+    <!--jquery chosen-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js" type="text/javascript" ></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" rel="stylesheet" type="text/css" />
+    <!--jquery ckeditor-->
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+    <!--jquery ckeditor-->
+    <script src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
+    <!--jquery ui-->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- jquery timepicker -->
+    <script src="user-friendly-time-picker/user-friendly-time-picker/src/js/timepicker.js"></script>
+    <!--jquery lightbox-->
+    <script src="lightbox/dist/js/lightbox.min.js"></script>
+    <!--jquery datatable-->
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
+    <!--css / js-->
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script type="text/javascript" src="app.js"></script>
+
+
+</head>
+<body>
+
+    <div class="image">
+
+    <div class="container">
+        <form id="commentForm">
+            <table cellpadding="2" cellspacing="5" id="form1">
+                
+                <th>
+                    <tr colspan="2"><h2>-:: Enter Your details ::-</h2></tr>
+                </th>
+                <tr>
+                    <td>Name : </td>
+                    <td><input name="name" id="name" placeholder="Enter your name" required/></td>
+                </tr>
+                
+                <tr>
+                    <td>Email : </td>
+                    <td><input name="email" id="email" placeholder="abcd@email.com" required/></td>
+                </tr>
+                
+                <tr>
+                    <td>Phone no. : </td>
+                    <td><input name="phone" id="phone" type="number" required/></td>
+                </tr>
+
+                <tr>
+                    <td>Address : </td>
+                    <td><textarea name="address" id="address" onkeyup="countChars(this)" maxlength="160" rows="5" placeholder="Enter your address in 160 characters..." required></textarea>
+                        <div class="textareachars" style="font-size: 12px;"></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>DOB : </td>
+                    <td><input type="text" id="datepicker" name="datepicker"></td>
+                </tr>
+
+                <tr>
+                    <td>City : </td>
+                    <td>
+                        <div>
+                            <select data-placeholder="Choose a Country..." class="chosen-select" name="city">
+                                <option value=""></option>
+                                <option value="Surat">Surat</option>
+                                <option value="Ahmedabad">Ahmedabad</option>
+                                <option value="Vadodara">Vadodara</option>
+                                <option value="Amreli">Amreli</option>
+                                <option value="New york">New york</option>
+                            </select>
+                            <label for="city" generated="true" class="error"></label>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>About me : </td>
+                    <td>
+                        <textarea name="ckeditorlite" id="ckeditorlite" cols="30" rows="10" required></textarea>
+                        <label for="ckeditorlite" generated="true" class="error"></label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Birth time : </td>
+                    <td><input type="text" id="timepicker" name="timepicker"/></td>
+                </tr>
+
+                <tr>
+                    <td>Hobby : </td>
+                    <td><div>
+                            <select multiple data-placeholder="Choose a Country..." class="chosen-select" name="hobby" required>
+                                <option value=""></option>
+                                <option value="Sports">Sports</option>
+                                <option value="Arts">Arts</option>
+                                <option value="Coding">Coding</option>
+                                <option value="Traveling">Traveling</option>
+                                <option value="Reading Novels">Reading Novels</option>
+                            </select>
+                            <label for="hobby" generated="true" class="error"></label>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Introduction : </td>
+                    <td><textarea id="ck" name="ck" rows="10" cols="80" required></textarea>
+                    <div class="introerr" style="font-family: Verdana, Geneva, Tahoma, sans-serif; color: red;"></div></td>
+                </tr>
+            
+            </table>
+            <div>
+                <input type="submit" name="submit" class="btn" />
+            </div>
+
+            
+        </form>
+    </div>
+
+    <div class="gallery">
+        <h2>5 Image gallery</h2><br/>
+        <a class="example-image-link" href="img/annie-spratt-r9eIL7jtenc-unsplash.jpg" data-lightbox="example-set" data-title="Nature is beautiful"><img class="example-image thumb" src="img/annie-spratt-r9eIL7jtenc-unsplash.jpg" alt=""/></a>
+        <a class="example-image-link" href="img/boris-baldinger-ZUJ6uPPnTGY-unsplash.jpg" data-lightbox="example-set" data-title="Nature is beautiful"><img class="example-image thumb" src="img/boris-baldinger-ZUJ6uPPnTGY-unsplash.jpg" alt="" /></a>
+        <a class="example-image-link" href="img/daniel-born-FU5ReNkmAo8-unsplash.jpg" data-lightbox="example-set" data-title="Nature is beautiful"><img class="example-image thumb" src="img/daniel-born-FU5ReNkmAo8-unsplash.jpg" alt="" /></a>
+        <a class="example-image-link" href="img/isaac-martin-Apkr4nfK1mU-unsplash.jpg" data-lightbox="example-set" data-title="Nature is beautiful"><img class="example-image thumb" src="img/isaac-martin-Apkr4nfK1mU-unsplash.jpg" alt="" /></a>
+        <a class="example-image-link" href="img/zero-take-LMkP6IffuxA-unsplash.jpg" data-lightbox="example-set" data-title="Nature is beautiful"><img class="example-image thumb" src="img/zero-take-LMkP6IffuxA-unsplash.jpg" alt="" /></a>
+    </div>
+
+    <br/><br/><br/><br/><br/><br/>
+    
+    <div class="dttable">
+        <h2>Data table</h2>
+        <table cellpadding="1" cellspacing="1" id="myTable" class="display">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Date of birth</th>
+                    <th>City</th>
+                    <th>phone</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <br>
+                <tr>
+                    <td>Noah Harvey</td>
+                    <td>16/12/2021</td>
+                    <td>St. Ives</td>
+                    <td>(05) 5461 5878</td>
+                </tr>
+                <tr>
+                    <td>Lionel Webster</td>
+                    <td>16/12/2020</td>
+                    <td>Jambes</td>
+                    <td>(03) 6679 9728</td>
+                </tr>
+                <tr>
+                    <td>Kenneth Cummings</td>
+                    <td>12/11/2020</td>
+                    <td>Arras</td>
+                    <td>(03) 6056 4621</td>
+                </tr>
+                <tr>
+                    <td>Hall Rodgers</td>
+                    <td>24/04/2022</td>
+                    <td>Laives/Leifers</td>
+                    <td>(03) 9590 0969</td>
+                </tr>
+                <tr>
+                    <td>Stewart Larsen</td>
+                    <td>08/03/2022</td>
+                    <td>Vaux-lez-Rosieres</td>
+                    <td>(01) 0481 6046</td>
+                </tr>
+                <tr>
+                    <td>Emery Conrad</td>
+                    <td>18/01/2021</td>
+                    <td>Doñihue</td>
+                    <td>(05) 2933 8751</td>
+                </tr>
+                <tr>
+                    <td>Travis Gilbert</td>
+                    <td>07/07/2021</td>
+                    <td>Santipur</td>
+                    <td>(05) 6462 9211</td>
+                </tr>
+                <tr>
+                    <td>Solomon Mcgee</td>
+                    <td>03/05/2022</td>
+                    <td>Murcia</td>
+                    <td>(05) 9837 5619</td>
+                </tr>
+                <tr>
+                    <td>Blaze Mullins</td>
+                    <td>19/10/2021</td>
+                    <td>Cusco</td>
+                    <td>(05) 0162 3841</td>
+                </tr>
+                <tr>
+                    <td>Maxwell Walter</td>
+                    <td>15/04/2021</td>
+                    <td>Valda</td>
+                    <td>(07) 3691 9501</td>
+                </tr>
+                <tr>
+                    <td>Clinton Alford</td>
+                    <td>06/03/2022</td>
+                    <td>Subiaco</td>
+                    <td>(07) 1600 5908</td>
+                </tr>
+                <tr>
+                    <td>Cruz Taylor</td>
+                    <td>20/05/2021</td>
+                    <td>Booischot</td>
+                    <td>(08) 7026 4447</td>
+                </tr>
+                <tr>
+                    <td>Hayes Stephenson</td>
+                    <td>28/12/2021</td>
+                    <td>Wetteren</td>
+                    <td>(03) 9006 3843</td>
+                </tr>
+                <tr>
+                    <td>Judah Savage</td>
+                    <td>08/10/2020</td>
+                    <td>Sundrie</td>
+                    <td>(05) 0601 9346</td>
+                </tr>
+                <tr>
+                    <td>Brent Mayer</td>
+                    <td>16/03/2021</td>
+                    <td>Notre-Dame-du-Nord</td>
+                    <td>(04) 2762 2573</td>
+                </tr>
+                <tr>
+                    <td>Kelly Payne</td>
+                    <td>10/02/2021</td>
+                    <td>Pierrefonds</td>
+                    <td>(01) 2470 0684</td>
+                </tr>
+                <tr>
+                    <td>Rajah Snider</td>
+                    <td>01/07/2022</td>
+                    <td>Tidore</td>
+                    <td>(03) 9468 1777</td>
+                </tr>
+                <tr>
+                    <td>Gray Sampson</td>
+                    <td>14/12/2021</td>
+                    <td>Tanjung Pinang</td>
+                    <td>(09) 6326 1841</td>
+                </tr>
+                <tr>
+                    <td>Honorato Cochran</td>
+                    <td>29/06/2022</td>
+                    <td>Eckville</td>
+                    <td>(06) 7347 3465</td>
+                </tr>
+                <tr>
+                    <td>Acton Morgan</td>
+                    <td>04/02/2021</td>
+                    <td>Llandovery</td>
+                    <td>(09) 3765 1373</td>
+                </tr>
+                <tr>
+                    <td>Nathan Hewitt</td>
+                    <td>01/03/2021</td>
+                    <td>Kolomna</td>
+                    <td>(04) 0207 4201</td>
+                </tr>
+                <tr>
+                    <td>Griffin Horn</td>
+                    <td>17/06/2021</td>
+                    <td>Torre Cajetani</td>
+                    <td>(05) 1219 7796</td>
+                </tr>
+                <tr>
+                    <td>Jin Powell</td>
+                    <td>22/10/2020</td>
+                    <td>Kakisa</td>
+                    <td>(04) 7153 6027</td>
+                </tr>
+                <tr>
+                    <td>Harrison Puckett</td>
+                    <td>20/04/2021</td>
+                    <td>San Pedro Garza García</td>
+                    <td>(04) 2432 7206</td>
+                </tr>
+                <tr>
+                    <td>Mark Buckley</td>
+                    <td>17/08/2021</td>
+                    <td>Eckville</td>
+                    <td>(02) 3714 3897</td>
+                </tr>
+                <tr>
+                    <td>Charles Elliott</td>
+                    <td>27/05/2022</td>
+                    <td>Coleville Lake</td>
+                    <td>(01) 6086 5710</td>
+                </tr>
+                <tr>
+                    <td>Steven Swanson</td>
+                    <td>29/08/2020</td>
+                    <td>Korbach</td>
+                    <td>(07) 1214 5003</td>
+                </tr>
+                <tr>
+                    <td>Steven Byrd</td>
+                    <td>15/05/2022</td>
+                    <td>Limache</td>
+                    <td>(04) 6639 7950</td>
+                </tr>
+                <tr>
+                    <td>Elton Wyatt</td>
+                    <td>14/04/2021</td>
+                    <td>Gorontalo</td>
+                    <td>(06) 0745 7980</td>
+                </tr>
+                <tr>
+                    <td>Dorian Shannon</td>
+                    <td>28/06/2022</td>
+                    <td>Offida</td>
+                    <td>(08) 9894 6792</td>
+                </tr>
+                <tr>
+                    <td>Neville Rhodes</td>
+                    <td>17/10/2021</td>
+                    <td>Kidwelly</td>
+                    <td>(03) 5893 6225</td>
+                </tr>
+                <tr>
+                    <td>Fulton Jarvis</td>
+                    <td>19/09/2020</td>
+                    <td>Fallais</td>
+                    <td>(04) 4158 3754</td>
+                </tr>
+                <tr>
+                    <td>Harper Lindsey</td>
+                    <td>08/06/2022</td>
+                    <td>Fort Saskatchewan</td>
+                    <td>(06) 5708 1889</td>
+                </tr>
+                <tr>
+                    <td>Scott Romero</td>
+                    <td>30/10/2021</td>
+                    <td>Nossegem</td>
+                    <td>(07) 0951 7238</td>
+                </tr>
+                <tr>
+                    <td>Price Fulton</td>
+                    <td>02/05/2021</td>
+                    <td>Golspie</td>
+                    <td>(04) 6605 7364</td>
+                </tr>
+                <tr>
+                    <td>Zeph Irwin</td>
+                    <td>12/10/2021</td>
+                    <td>l'Ecluse</td>
+                    <td>(05) 8547 8849</td>
+                </tr>
+                <tr>
+                    <td>Vernon Blanchard</td>
+                    <td>28/01/2022</td>
+                    <td>Columbus</td>
+                    <td>(01) 9144 9186</td>
+                </tr>
+                <tr>
+                    <td>Ray Key</td>
+                    <td>08/12/2021</td>
+                    <td>Gilgit</td>
+                    <td>(01) 6413 8590</td>
+                </tr>
+                <tr>
+                    <td>Lyle Mckenzie</td>
+                    <td>27/05/2021</td>
+                    <td>Midway</td>
+                    <td>(02) 6193 5587</td>
+                </tr>
+                <tr>
+                    <td>Clayton Shannon</td>
+                    <td>04/10/2020</td>
+                    <td>Heule</td>
+                    <td>(06) 1508 6545</td>
+                </tr>
+                <tr>
+                    <td>Jamal Lynch</td>
+                    <td>13/10/2021</td>
+                    <td>Rivire</td>
+                    <td>(09) 0496 5088</td>
+                </tr>
+                <tr>
+                    <td>Sylvester Fitzpatrick</td>
+                    <td>25/09/2020</td>
+                    <td>North Las Vegas</td>
+                    <td>(01) 6977 2862</td>
+                </tr>
+                <tr>
+                    <td>Jonas Atkinson</td>
+                    <td>16/04/2022</td>
+                    <td>Ernage</td>
+                    <td>(09) 7607 1702</td>
+                </tr>
+                <tr>
+                    <td>Alden Jones</td>
+                    <td>27/03/2021</td>
+                    <td>Telde</td>
+                    <td>(01) 4133 9767</td>
+                </tr>
+                <tr>
+                    <td>Quamar Goodwin</td>
+                    <td>25/08/2021</td>
+                    <td>Acquasanta Terme</td>
+                    <td>(05) 6487 5242</td>
+                </tr>
+                <tr>
+                    <td>Seth Harding</td>
+                    <td>20/06/2022</td>
+                    <td>Sagamu</td>
+                    <td>(02) 4390 1900</td>
+                </tr>
+                <tr>
+                    <td>Dylan Hodge</td>
+                    <td>26/11/2020</td>
+                    <td>Pirque</td>
+                    <td>(06) 2048 3584</td>
+                </tr>
+                <tr>
+                    <td>Hoyt Foster</td>
+                    <td>29/06/2022</td>
+                    <td>Herselt</td>
+                    <td>(04) 8926 3090</td>
+                </tr>
+                <tr>
+                    <td>Nathaniel Ratliff</td>
+                    <td>24/03/2022</td>
+                    <td>Sint-Martens-Lennik</td>
+                    <td>(05) 7605 2610</td>
+                </tr>
+                <tr>
+                    <td>Lev Medina</td>
+                    <td>09/08/2022</td>
+                    <td>Glendale</td>
+                    <td>(05) 8505 8195</td>
+                </tr>
+                <tr>
+                    <td>Driscoll Lucas</td>
+                    <td>23/02/2022</td>
+                    <td>Ancaster Town</td>
+                    <td>(04) 7917 8950</td>
+                </tr>
+                <tr>
+                    <td>Carter Gill</td>
+                    <td>01/07/2021</td>
+                    <td>Calgary</td>
+                    <td>(08) 1427 9889</td>
+                </tr>
+                <tr>
+                    <td>Nathaniel Fulton</td>
+                    <td>13/02/2021</td>
+                    <td>Crieff</td>
+                    <td>(03) 2845 5691</td>
+                </tr>
+                <tr>
+                    <td>Chase Clayton</td>
+                    <td>22/01/2022</td>
+                    <td>Longvilly</td>
+                    <td>(08) 8946 0445</td>
+                </tr>
+                <tr>
+                    <td>Knox Shaffer</td>
+                    <td>12/09/2020</td>
+                    <td>Mielec</td>
+                    <td>(04) 5613 2133</td>
+                </tr>
+                <tr>
+                    <td>Nehru Vance</td>
+                    <td>01/01/2022</td>
+                    <td>Grand Rapids</td>
+                    <td>(03) 8640 7170</td>
+                </tr>
+                <tr>
+                    <td>Colt Ruiz</td>
+                    <td>17/01/2021</td>
+                    <td>Cap-de-la-Madeleine</td>
+                    <td>(08) 8371 9954</td>
+                </tr>
+                <tr>
+                    <td>Oren Kinney</td>
+                    <td>05/05/2021</td>
+                    <td>Okpoko</td>
+                    <td>(09) 6318 7403</td>
+                </tr>
+                <tr>
+                    <td>Talon Holloway</td>
+                    <td>03/09/2021</td>
+                    <td>Coquitlam</td>
+                    <td>(09) 1201 6019</td>
+                </tr>
+                <tr>
+                    <td>Ferdinand Serrano</td>
+                    <td>03/07/2022</td>
+                    <td>Lichfield</td>
+                    <td>(04) 1977 4051</td>
+                </tr>
+                <tr>
+                    <td>Hamish Bryant</td>
+                    <td>28/11/2021</td>
+                    <td>Scunthorpe</td>
+                    <td>(07) 2004 3749</td>
+                </tr>
+                <tr>
+                    <td>Keegan Hatfield</td>
+                    <td>31/10/2021</td>
+                    <td>Jabalpur</td>
+                    <td>(02) 0648 9242</td>
+                </tr>
+                <tr>
+                    <td>Damian Jacobs</td>
+                    <td>06/08/2022</td>
+                    <td>Jammu</td>
+                    <td>(09) 4348 6625</td>
+                </tr>
+                <tr>
+                    <td>Lane Fry</td>
+                    <td>19/06/2022</td>
+                    <td>Chittoor</td>
+                    <td>(08) 3721 3725</td>
+                </tr>
+                <tr>
+                    <td>Alfonso Hicks</td>
+                    <td>07/10/2021</td>
+                    <td>Ghotki</td>
+                    <td>(04) 5616 7361</td>
+                </tr>
+                <tr>
+                    <td>Kasper Golden</td>
+                    <td>24/10/2020</td>
+                    <td>Coldstream</td>
+                    <td>(09) 0403 3373</td>
+                </tr>
+                <tr>
+                    <td>Gannon Wiggins</td>
+                    <td>18/05/2021</td>
+                    <td>Wemmel</td>
+                    <td>(07) 9814 6991</td>
+                </tr>
+                <tr>
+                    <td>Seth Thomas</td>
+                    <td>15/02/2022</td>
+                    <td>Pekanbaru</td>
+                    <td>(07) 3890 3407</td>
+                </tr>
+                <tr>
+                    <td>Theodore Anderson</td>
+                    <td>28/04/2022</td>
+                    <td>Anderlecht</td>
+                    <td>(07) 3641 1003</td>
+                </tr>
+                <tr>
+                    <td>Troy Larsen</td>
+                    <td>14/03/2022</td>
+                    <td>Kobbegem</td>
+                    <td>(07) 5254 7017</td>
+                </tr>
+                <tr>
+                    <td>Tate Morin</td>
+                    <td>10/11/2020</td>
+                    <td>Mayerthorpe</td>
+                    <td>(05) 4292 9228</td>
+                </tr>
+                <tr>
+                    <td>Jared David</td>
+                    <td>04/03/2021</td>
+                    <td>Sorgà</td>
+                    <td>(03) 9706 4416</td>
+                </tr>
+                <tr>
+                    <td>Graham Guthrie</td>
+                    <td>26/05/2022</td>
+                    <td>Dehri</td>
+                    <td>(06) 3262 7463</td>
+                </tr>
+                <tr>
+                    <td>Chadwick Cervantes</td>
+                    <td>26/02/2021</td>
+                    <td>Spruce Grove</td>
+                    <td>(05) 9060 8367</td>
+                </tr>
+                <tr>
+                    <td>Tobias Harrington</td>
+                    <td>16/03/2022</td>
+                    <td>Glendale</td>
+                    <td>(06) 0551 1504</td>
+                </tr>
+                <tr>
+                    <td>Tyler Manning</td>
+                    <td>24/07/2022</td>
+                    <td>Bad Kreuznach</td>
+                    <td>(06) 9878 0443</td>
+                </tr>
+                <tr>
+                    <td>Armando Blake</td>
+                    <td>28/09/2020</td>
+                    <td>Facatativá</td>
+                    <td>(07) 6153 4545</td>
+                </tr>
+                <tr>
+                    <td>Wyatt Waller</td>
+                    <td>06/10/2020</td>
+                    <td>Ottawa</td>
+                    <td>(07) 1605 3767</td>
+                </tr>
+                <tr>
+                    <td>Denton Delacruz</td>
+                    <td>17/05/2021</td>
+                    <td>Rionero in Vulture</td>
+                    <td>(07) 8722 6628</td>
+                </tr>
+                <tr>
+                    <td>Hashim Vasquez</td>
+                    <td>19/08/2022</td>
+                    <td>Lorient</td>
+                    <td>(04) 0315 8970</td>
+                </tr>
+                <tr>
+                    <td>Marsden Parker</td>
+                    <td>12/12/2021</td>
+                    <td>Acquasparta</td>
+                    <td>(05) 6512 3358</td>
+                </tr>
+                <tr>
+                    <td>Ferris Rowland</td>
+                    <td>16/04/2021</td>
+                    <td>Mezzana</td>
+                    <td>(04) 5122 3576</td>
+                </tr>
+                <tr>
+                    <td>Seth Nixon</td>
+                    <td>13/07/2022</td>
+                    <td>St. Albans</td>
+                    <td>(04) 8315 0093</td>
+                </tr>
+                <tr>
+                    <td>Tad Galloway</td>
+                    <td>03/10/2021</td>
+                    <td>Evere</td>
+                    <td>(03) 6986 4738</td>
+                </tr>
+                <tr>
+                    <td>Devin Lott</td>
+                    <td>26/07/2021</td>
+                    <td>Grave</td>
+                    <td>(06) 0532 5210</td>
+                </tr>
+                <tr>
+                    <td>Christopher Hogan</td>
+                    <td>14/08/2021</td>
+                    <td>Stornaway</td>
+                    <td>(01) 7706 7570</td>
+                </tr>
+                <tr>
+                    <td>Ralph Andrews</td>
+                    <td>14/10/2021</td>
+                    <td>Heikruis</td>
+                    <td>(02) 2760 4129</td>
+                </tr>
+                <tr>
+                    <td>Palmer Mullins</td>
+                    <td>09/02/2021</td>
+                    <td>Puri</td>
+                    <td>(08) 4202 1270</td>
+                </tr>
+                <tr>
+                    <td>Burke Buck</td>
+                    <td>02/09/2020</td>
+                    <td>Peresvet</td>
+                    <td>(07) 3555 2829</td>
+                </tr>
+                <tr>
+                    <td>Warren Barlow</td>
+                    <td>22/08/2020</td>
+                    <td>Charters Towers</td>
+                    <td>(03) 9467 7782</td>
+                </tr>
+                <tr>
+                    <td>Bruce Beasley</td>
+                    <td>16/02/2022</td>
+                    <td>Medicine Hat</td>
+                    <td>(09) 3184 2709</td>
+                </tr>
+                <tr>
+                    <td>Gil Hewitt</td>
+                    <td>25/04/2022</td>
+                    <td>Brora</td>
+                    <td>(05) 7706 3578</td>
+                </tr>
+                <tr>
+                    <td>Beau Hood</td>
+                    <td>13/02/2021</td>
+                    <td>Liverpool</td>
+                    <td>(08) 7079 7931</td>
+                </tr>
+                <tr>
+                    <td>Ezekiel Nichols</td>
+                    <td>14/06/2022</td>
+                    <td>Kitzbühel</td>
+                    <td>(04) 1436 4064</td>
+                </tr>
+                <tr>
+                    <td>Donovan Knowles</td>
+                    <td>19/05/2021</td>
+                    <td>Wortel</td>
+                    <td>(08) 2969 1867</td>
+                </tr>
+                <tr>
+                    <td>Elliott Estrada</td>
+                    <td>03/11/2020</td>
+                    <td>Lower Hutt</td>
+                    <td>(05) 2361 0185</td>
+                </tr>
+                <tr>
+                    <td>Declan Byrd</td>
+                    <td>11/07/2022</td>
+                    <td>San Juan del Río</td>
+                    <td>(01) 6654 6945</td>
+                </tr>
+                <tr>
+                    <td>Alvin Cole</td>
+                    <td>11/05/2021</td>
+                    <td>Ashoknagar-Kalyangarh</td>
+                    <td>(05) 5765 4301</td>
+                </tr>
+                <tr>
+                    <td>Garrison Reid</td>
+                    <td>12/03/2021</td>
+                    <td>Vreren</td>
+                    <td>(01) 9107 7612</td>
+                </tr>
+                <tr>
+                    <td>Walter Ewing</td>
+                    <td>29/12/2020</td>
+                    <td>Vorst</td>
+                    <td>(06) 0784 7820</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>Date of birth</th>
+                    <th>City</th>
+                    <th>phone</th>
+                </tr>
+            </tfoot>
+            </table>
+    </div>
+    <div class="extra"> . </div>
+</div>
+<script>
+    // var cklite = ClassicEditor.create(document.querySelector('#ckeditorlite'),{
+    //     toolbar: {
+    //         items: [
+    //             'heading', '|',
+    //             'fontfamily', 'fontsize', '|',
+    //             'alignment', '|',
+    //             'fontColor', 'fontBackgroundColor', '|',
+    //             'bold', 'italic', 'strikethrough', 'underline', 'subscript', 'superscript', '|', 
+    //             'link', '|',
+    //             'outdent', 'indent', '|',
+    //             'bulletedList', 'numberedList', 'todoList', '|',
+    //             'code', 'codeBlock', '|',
+    //             'insertTable', '|',
+    //             'uploadImage', 'blockQuote', '|',
+    //             'undo', 'redo'
+    //         ],
+    //         shouldNotGroupWhenFull: true
+    //     }
+    // }); 
+    // ClassicEditor.create(document.querySelector("#ckeditorlite"));
+    
+    // cklite.on( 'required', function( evt ) {
+    //     $(".abouterr").text("About me field is not allowed to leave empty, it is required");
+    //     evt.cancel();
+    // });
+
+</script>
+
+</body>
+</html>

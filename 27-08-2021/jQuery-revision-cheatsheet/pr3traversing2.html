@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <title>Traversing 2</title>
+    <style>
+        div {
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid black;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="div1">
+        div1
+        <div class="1-1">
+            div 1-1
+            <div class="1-1-1">
+                div 1-1-1
+            </div>
+            <p class="1-1-1">
+                p 1-1-1
+            </p>
+        </div>
+        <p class="1-1">
+            p 1-1
+        </p>
+    </div>
+
+    <br/>
+
+    <p class="p1">
+        p1
+    </p>
+
+    <br/>
+
+    <div class="div2" id="div2">
+        div2
+        <div class="2-1">
+            div 2-1<br/>
+            <ul class="ul">
+                <li>list item 1</li>
+                <li>list item 2</li>
+                <li>list item 3</li>
+                <li>list item 4</li>
+                <li>list item 5</li>
+            </ul>
+        </div>
+        <p class="2-1">
+            p 2-1
+        </p>
+    </div>
+
+    <br/>
+
+    <p class="p2">
+        p2
+    </p>
+
+    <br/>
+    
+    <div class="div3">
+        div3
+        <div class="3-1">
+            div 3-1
+        </div>
+        <p class="3-1">
+            p 3-1
+        </p>
+    </div>
+
+    <br/>
+    
+    <p class="p3" id="p3">
+        p3
+    </p>
+
+    <script>
+        $().ready(function () {
+            	
+            $( ".ul" ).children().append( " -- childern of ul " );
+            $( ".ul" ).find( "li" ).append( " -- find in ul by li " );
+            $( "div.1-1-1" ).next().append( " -- next sibling of div.1-1-1 / next() " );
+            $( "div.div1" ).nextAll().append( " -- nextAll sibling of div.div1 / nextAll() " );
+            $( "div.1-1-1" ).parents().append( " -- parents of div.1-1-1 / parents() " );
+            $( "li" ).siblings().append( " -- siblings of each other / siblings() " );
+
+
+
+            
+
+
+
+
+            // $( "li" ).eq(1).css("background-color" , "red").append(" -- bg red ");
+            // $( "li" ).filter( ":nth-child(2n)" ).css( "font-style", "italic" ).append(" -- italic");
+            // $( "li" ).first().css("background-color" , "green").append(" -- bg green -- first ");
+            // $( "li" ).last().css("background-color" , "green").append(" -- bg green -- last ");
+            // $( "li" ).not( ":nth-child(2n)" ).append( "<b> -- not :nth-child(2n) -- bold</b>" );
+            // $( "div" ).has( "ul" ).css( "background-color", "Gainsboro" ).append(" -- has ul -- bg greyish"); 
+            // $( "li" ).slice(2,4).css("font-family" , "Verdana, Geneva, Tahoma, sans-serif").append(" -- slice 2,4 -- font-family : Verdana, Geneva, Tahoma, sans-serif ");
+            // $( "div.1-1-1" ).add( "p" ).append( "Added paragraph -- add p" );
+            // var contents = $( "div.div3" ).contents()[0];
+            // $( "p.p3" ).append( ` -- ${contents}` );
+
+            // $( "li" ).each(function( index ) {
+            //     console.log( index + ": " + $( this ).text() );
+            // });
+
+            
+
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <title>DOM</title>
+    <style>
+        div {
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid black;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="div1">
+        div1
+        <div class="1-1">
+            div 1-1
+            <div class="1-1-1">
+                div 1-1-1
+            </div>
+            <p class="1-1-1">
+                p 1-1-1
+            </p>
+        </div>
+        <p class="1-1">
+            p 1-1
+        </p>
+    </div>
+
+    <br/>
+    <div class="container">
+        <div class="hello">Hello</div>
+        <div class="goodbye">Goodbye</div>
+    </div>
+
+    <br/>
+
+    <p class="p1">
+        p1
+    </p>
+
+    <br/>
+
+    <div class="div2" id="div2">
+        div2
+        <div class="2-1">
+            div 2-1
+        </div>
+        <p class="2-1">
+            p 2-1
+        </p>
+    </div>
+
+    <br/>
+
+    <p class="p2">
+        p2
+    </p>
+
+    <br/>
+    
+    <div class="div3">
+        div3
+        <div class="3-1">
+            div 3-1
+        </div>
+        <p class="3-1">
+            p 3-1
+        </p>
+    </div>
+
+    <br/>
+    
+    <p class="p3" id="p3">
+        p3
+    </p>
+
+
+<script>
+    $().ready(function () {
+        //DOM
+        $( ".hello" ).clone().appendTo( ".goodbye" );
+        $( "p.p1" ).wrap( `<div style=\"background-color : yellow\"></div>` );
+        $( "div.div2" ).wrapAll( `<div style=\"background-color : cyan\"></div>` );
+        $( "p.p2, p.p3" ).wrapInner( `<div style=\"background-color : CornflowerBlue\"></div>` );
+        $( "p.p1" ).append( "<b> -- append in p tag -- </b>" );
+        $( "<b> -- appendTo in p tag -- </b>" ).appendTo( "p.p1" );
+        $( "p.p1" ).prepend( "<b> -- prepend in p tag -- </b>" );
+        $( "<b> -- prependTo in p tag</b> -- " ).prependTo( "p.p1" );
+        $( "p.p2" ).after( "<b> -- after in p tag -- </b>" );
+        $( "p.p2" ).before( "<b> -- before in p tag -- </b>" );
+        $( "<b> -- insert after in p tag -- </b>" ).insertAfter( "p.p2" );
+        $( "<b> -- insert before in p tag -- </b>" ).insertBefore( "p.p2" );
+        $( "div.3-1" ).empty();
+        $( "div.1-1-1" ).remove();
+        // $( "p.p1" ).unwrap();
+        $( "p.1-1-1" ).replaceWith( "<p><b> -- p tag of class 1-1-1 is replaced by this long text -- </b></p>" );
+
+    });
+</script>
+</body>
+</html>
