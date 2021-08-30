@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax</title>
+</head>
+<body>
+    <select name="select1" id="select1">
+        <option value="Select">Select City</option>
+        <option value="a">Madhya Pradesh</option>
+        <option value="b">Gujarat</option>
+        <option value="c">Maharastra</option>
+     </select>
+     
+     
+     <select id="select2" name="select2">
+     <option value="Select">Select</option>
+        <option class="a" value="Indore">Indore</option>
+        <option class="a" value="Bhopal">Bhopal</option>
+        <option class="a" value="Ujjain">Ujjain</option>
+        <option class="b" value="Ahemdabad">Ahemdabad</option>
+        <option class="b" value="Rajkot">Rajkot</option>
+        <option class="b" value="Surat">Surat</option>
+        <option class="c" value="Mumbai">Mumbai</option>
+        <option class="c" value="Pune">Pune</option>
+        <option class="c" value="Solapur">Solapur</option>
+      </select>
+
+    <script>
+        jQuery(document).ready(function($){
+            $('#select1').on('change', function(e){
+                var className = e.target.value;
+                $('#select2 option').prop('disabled', true);
+                $('#selec2').find('option.' + className).prop('disabled', false);
+            });
+        });
+        
+    </script>
+</body>
+</html>

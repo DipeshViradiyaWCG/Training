@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax</title>
+</head>
+<body>
+    <div id="data">
+
+    </div>
+    <input type="button" onclick="AjaxCall1()" value="Ajax load1">
+    <input type="button" onclick="AjaxCall2()" value="Ajax load2">
+    <script>
+        function AjaxCall1() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    document.getElementById("data").innerHTML = xhttp.responseText;
+                }
+            };
+            xhttp.open("GET", "file1.txt", true);
+            xhttp.send();
+        }
+
+        function AjaxCall2() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    document.getElementById("data").innerHTML = xhttp.responseText;
+                }
+            };
+            xhttp.open("GET", "file2.txt", true);
+            xhttp.send();
+        }
+    </script>
+</body>
+</html>
