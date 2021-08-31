@@ -4,28 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <title>Ajax</title>
 </head>
 <body>
     <select name="select1" id="select1">
-        <option value="Select">Select City</option>
-        <option value="a">Madhya Pradesh</option>
-        <option value="b">Gujarat</option>
-        <option value="c">Maharastra</option>
+        <option value="Select">Select</option>
+        <option value="a">front end</option>
+        <option value="b">back end</option>
      </select>
      
      
      <select id="select2" name="select2">
      <option value="Select">Select</option>
-        <option class="a" value="Indore">Indore</option>
-        <option class="a" value="Bhopal">Bhopal</option>
-        <option class="a" value="Ujjain">Ujjain</option>
-        <option class="b" value="Ahemdabad">Ahemdabad</option>
-        <option class="b" value="Rajkot">Rajkot</option>
-        <option class="b" value="Surat">Surat</option>
-        <option class="c" value="Mumbai">Mumbai</option>
-        <option class="c" value="Pune">Pune</option>
-        <option class="c" value="Solapur">Solapur</option>
+        <option class="a" value="HTML">HTML</option>
+        <option class="a" value="CSS">CSS</option>
+        <option class="a" value="JS">JS</option>
+        <option class="a" value="ReactJS">React JS</option>
+        <option class="b" value="Java">Java</option>
+        <option class="b" value="Python">Python</option>
+        <option class="b" value="NodeJS">Node JS</option>
+        <option class="b" value="Database">Database</option>
       </select>
 
     <script>
@@ -33,7 +32,7 @@
             $('#select1').on('change', function(e){
                 var className = e.target.value;
                 $('#select2 option').prop('disabled', true);
-                $('#selec2').find('option.' + className).prop('disabled', false);
+                $('#select2').find('option.' + className).prop('disabled', false);
             });
         });
         

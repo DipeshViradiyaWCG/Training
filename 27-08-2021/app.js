@@ -110,12 +110,6 @@ $().ready(function () {
         evt.cancel();
     });
 
-    // var editorlite = CKEDITOR.replace("ckeditorlite");
-
-    // editorlite.on( 'required', function( evt ) {
-    //     $(".abouterr").text("Please provide your introduction, it is required");
-    //     evt.cancel();
-    // });
     
     lightbox.option({
         'resizeDuration': 200,

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="jquery-toast-plugin-master/jquery-toast-plugin-master/src/jquery.toast.js"></script>
+    <link rel="stylesheet" type="text/css" href="jquery-toast-plugin-master/jquery-toast-plugin-master/src/jquery.toast.css">
+    <title>Toast</title>
+    <style>
+        .container {
+            text-align: center;
+            margin-top: 5%;
+        }
+        button {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin: 5%;
+            background: #9ca2fc;
+            padding: 5px;
+        }
+        body{
+            background-image: linear-gradient(to right, #72f179, #3c97ec);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button id="btn1">Alert 1</button>
+        <button id="btn2">Alert 2</button>
+        <button id="btn3">Alert 3</button>    
+    </div>
+    
+    <script>
+        $().ready(function () {
+            $("#btn1").click(() => {   
+                $.toast('Alert 1 is clicked...')
+                }
+            );
+            $("#btn2").click(() => {   
+                $.toast({
+                    heading: 'Information',
+                    text: 'Alert 2 is clicked - this will stay for 5 secs...',
+                    showHideTransition: 'slide',
+                    icon: 'info',
+                    loader: false,
+                    hideAfter: 5000, 
+                })
+                }
+            );
+            $("#btn3").click(() => {   
+                $.toast({
+                    heading: 'Success',
+                    text: 'Success icon - will stay for 5 secs...',
+                    showHideTransition: 'slide',
+                    icon: 'success',
+                    loader: false,
+                    hideAfter: 5000
+                })
+                }
+            );
+        });
+    </script>
+</body>
+</html>

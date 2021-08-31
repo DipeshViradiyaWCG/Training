@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+    <title>Charts</title>
+    <style>
+        #basicChart {
+            width: 1000px !important;
+            height: 600px !important;
+            margin: auto;
+        }
+        #myChart {
+            width: 500px !important;
+            height: 500px !important;
+            margin-top: 5%;
+            margin: auto;
+        }
+        #barChart {
+            width: 1000px !important;
+            height: 600px !important;
+            margin-top: 5%;
+            margin: auto;
+        }
+        h2 {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+        }
+        body {
+            background-image: linear-gradient(#94dafa , #beec92);
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h2>Line chart</h2>
+        <canvas id="basicChart"></canvas>
+        <h2>Pie chart</h2>
+        <canvas id="myChart" ></canvas>
+        <h2>Bar chart</h2>
+        <canvas id="barChart"></canvas>
+    </div>
+    
+    <script>
+        const labels = [
+            ' ',
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+        ];
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [0, 5, 25, 15, 32.5, 10, 40],
+            }]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {}
+        };
+
+        new Chart(
+            document.getElementById('basicChart'),
+            config
+        );
+
+        
+
+        new Chart(document.getElementById("myChart"), {
+            type: 'pie',
+            data: {
+            labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+            datasets: [{
+                label: "Population (millions)",
+                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                data: [2568,3500,1250,785,1000]
+            }]
+            },
+            options: {
+            title: {
+                display: true,
+                text: 'Predicted world population (millions) in 2050'
+            },
+            responsive: true,
+            }
+        });
+
+        
+
+        new Chart(document.getElementById("barChart"), {
+            type: 'bar',
+            data: {
+            labels: ["1900", "1950", "1999", "2050"],
+            datasets: [
+                {
+                label: "Africa",
+                backgroundColor: "#e4a5e6",
+                data: [133,221,783,2478]
+                }, {
+                label: "Europe",
+                backgroundColor: "#a745ff",
+                data: [408,1947,675,734]
+                }
+            ]
+            },
+            options: {
+            title: {
+                display: true,
+                text: 'Population growth (millions)'
+            }
+            }
+        });
+    </script>
+</body>
+</html>
