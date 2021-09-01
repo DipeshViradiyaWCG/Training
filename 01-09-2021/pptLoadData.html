@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <style>
+        table, th, td {
+            border : 1px solid black;
+            border-collapse: collapse;
+        }
+        div, button{
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+    </style>
+
+
+</head>
+<body>
+    <button id="mybtn1"> Click Me - text file </button>
+    <div id="mydata1"></div>
+    <button id="mybtn2"> Click Me - html file </button>
+    <div id="mydata2"></div>
+    <button id="mybtn3"> Click Me - json file </button>
+    <div id="mydata3"></div>
+    
+    <script>
+        $().ready(function () {
+            $("#mybtn1").click(function (e) {
+                $.ajax({
+                    url : "demo.txt",
+                    success : function (result, status, xhr) {
+                        $("#mydata1").text(result);
+                    }
+                });
+            });
+            $("#mybtn2").click(function (e) {
+                $.ajax({
+                    url : "demo.html",
+                    success : function (result, status, xhr) {
+                        $("#mydata2").html(result);
+                    }
+                });
+            });
+            $("#mybtn3").click(function (e) {
+                $.ajax({
+                    url : "demo.json",
+                    success : function (result, status, xhr) {
+                        var table = $("<table><tr><th>ID</th><th>Name</th><th>Hobby</th></tr></table>");
+                        var tr;
+                        for (let i = 0; i < result.length; i++) {
+                            tr = $("<tr>");
+                            tr.append("<td>" + result[i].ID + "</td>");
+                            tr.append("<td>" + result[i].Name + "</td>");
+                            tr.append("<td>" + result[i].Hobby + "</td>");
+                            tr.append("</tr>");
+                        
+                            table.append(tr);
+                        }
+                        table.append("</table>");
+                        $("#mydata3").html(table);
+                        
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

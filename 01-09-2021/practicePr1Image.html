@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <style>
+        .container {
+            text-align: center;
+            margin-top: 3%;
+        }
+        input{
+            width: 300px;
+            padding: 5px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        #result {
+            margin-top: 2%;
+        }
+        body{
+            background-image: linear-gradient(to right, #c4a2e7, #e5c3a1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input type="text" name="findImg" id="findImg" placeholder="Search the keyword for image...">
+        <div id="result"></div>
+    </div>
+
+    <script>
+        $().ready(function () {
+            $("#findImg").keyup(function () {
+                $("#result").html(' ');
+                var searchVal = $('#findImg').val();
+                console.log(searchVal);
+                $.getJSON('imgData.json', function (data) {
+                    $.each(data, function (key, value) {
+                        if (value.name.includes(searchVal)){
+                           $('#result').append('<img src="'+value.url+'" height="200" width="350"/>&nbsp;&nbsp;&nbsp;');
+                        }
+                    })
+                })
+            });
+        });
+    </script>
+</body>
+</html>

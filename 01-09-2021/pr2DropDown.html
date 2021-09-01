@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <style>
+        .container {
+            text-align: center;
+            margin-top: 3%;
+        }
+        select{
+            width: 200px;
+            padding: 5px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin-left: 10px;
+        }
+        body {
+            background-image: linear-gradient(to right, #e3a4b3, #a4e3b7);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <select name="state" id="state">
+            <option value="">Select state</option>
+        </select>
+        <select name="city" id="city">
+            <option value="">Select city</option>
+        </select>
+    </div>
+
+    <script>
+        $().ready(function () {
+            load_json_data('state');
+            function load_json_data(id, parent_id) {
+                var html_code = '';
+                $.getJSON('state_city.json', function(data){
+
+                html_code += '<option value="">Select '+id+'</option>';
+                $.each(data, function(key, value){
+                    if(id == 'state')
+                    {
+                    if(value.parent_id == '0')
+                    {
+                    html_code += '<option value="'+value.id+'">'+value.name+'</option>';
+                    }
+                    }
+                    else
+                    {
+                    if(value.parent_id == parent_id)
+                    {
+                    html_code += '<option value="'+value.id+'">'+value.name+'</option>';
+                    }
+                    }
+                });
+                $('#'+id).html(html_code);
+                });
+
+            }
+
+            $(document).on('change', '#state', function(){
+                var state_id = $(this).val();
+                if(state_id != '')
+                {
+                    load_json_data('city', state_id);
+                }
+                else
+                {
+                    $('#city').html('<option value="">Select city</option>');
+                }
+            });
+        });
+    </script>
+    
+</body>
+</html>

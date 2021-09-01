@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <style>
+        table, th, td {
+            border : 1px solid black;
+            border-collapse: collapse;
+        }
+        td:nth-child(1) {
+            width : 10%;
+        }
+        td:nth-child(2) {
+            width : 10%;
+        }
+        td:nth-child(3) {
+            width : 20%;
+        }
+        td:nth-child(4) {
+            width : 60%;
+        }
+        #mytable{
+            margin-top: 5px;
+            margin-left: 15px;
+            padding: 5px;
+        }
+        #mydata {
+            margin-top: 15px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        body {
+            background-image: linear-gradient(to right, #a4e4a9, #b5a5e5);
+        }
+    </style>
+</head>
+<body>
+    <button id="mytable"> Load Table </button>
+    <div id="mydata">
+
+    </div>
+
+    <script>
+        $().ready(function () {
+            $("#mytable").click(function (e) {
+                $.ajax({
+                    url : "https://jsonplaceholder.typicode.com/posts",
+                    success : function (result, status, xhr) {
+                        var table = $("<table><tr><th>User ID</th><th>ID</th><th>Title</th><th>Body</th></tr></table>");
+                        var tr;
+                        for (let i = 0; i < result.length; i++) {
+                            tr = $("<tr>");
+                            tr.append("<td>" + result[i].userId + "</td>");
+                            tr.append("<td>" + result[i].id + "</td>");
+                            tr.append("<td>" + result[i].title + "</td>");
+                            tr.append("<td>" + result[i].body + "</td>");
+                            tr.append("</tr>");
+                        
+                            table.append(tr);
+                        }
+                        table.append("</table>");
+                        $("#mydata").html(table);
+                        
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
