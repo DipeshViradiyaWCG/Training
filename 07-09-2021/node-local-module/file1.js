@@ -1,0 +1,1 @@
+module.exports = "File 1 is exporting the string..."

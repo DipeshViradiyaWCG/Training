@@ -1,0 +1,4 @@
+module.exports = {
+    key1 : "value 1",
+    key2 : "value 2"
+}
