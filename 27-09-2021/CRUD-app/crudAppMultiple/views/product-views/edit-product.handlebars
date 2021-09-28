@@ -16,20 +16,20 @@
         <div class="col-6">
             <form method="POST">
                 <div class="mb-3">
-                    <label for="firstname" class="form-label">First Name</label>
-                    <input type="text" class="form-control" id="firstname" name="firstname" aria-describedby="emailHelp">
+                    <label for="firstname" class="form-label">Product Name</label>
+                    <input type="text" class="form-control" id="firstname" name="productname" value="{{productdata.productname}}" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
-                    <label for="lastname" class="form-label">Last Name</label>
-                    <input type="text" class="form-control" id="lastname" name="lastname" aria-describedby="emailHelp">
+                    <label for="lastname" class="form-label">Category Name</label>
+                    <input type="text" class="form-control" id="lastname" name="productcategory" value="{{productdata.productcategory}}" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
-                    <label for="class" class="form-label">Class</label>
-                    <input type="text" class="form-control" id="class" name="class" aria-describedby="emailHelp">
+                    <label for="class" class="form-label">Price</label>
+                    <input type="text" class="form-control" id="class" name="price" value="{{productdata.price}}" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
-                    <label for="stream" class="form-label">Stream</label>
-                    <input type="text" class="form-control" id="stream" name="stream" aria-describedby="emailHelp">
+                    <label for="stream" class="form-label">Description</label>
+                    <input type="text" class="form-control" id="stream" name="productdesc" value="{{productdata.productdesc}}" aria-describedby="emailHelp">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

@@ -1,9 +1,9 @@
-const student_model = require("../models/student_model");
+const product_model = require("../models/product_model");
 const user_model = require("../models/user_model");
 
 
 
-//Read student
+//Read product
 exports.read_data = function(req, res, next){
     if(req.session.uid)
         // console.log("session of id exist" + req.session.uid);
@@ -12,10 +12,10 @@ exports.read_data = function(req, res, next){
             res.redirect('/');
         else {
             // console.log("user in show data"+user);
-            student_model.find().lean().then((data) => {
+            product_model.find().lean().then((data) => {
                 // console.log(data);
                 // console.log("user in inner" + user);
-                res.render('show', {studentdata : data});
+                res.render('show', {productdata : data});
             }).catch((err) => {
                 throw err;
             });

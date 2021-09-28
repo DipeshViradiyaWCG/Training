@@ -1,6 +1,6 @@
 const user_model = require("../models/user_model");
 
-//Read student
+//Read product
 
 exports.signup_user_get = function (req, res, next) {
     res.render('signup');  
