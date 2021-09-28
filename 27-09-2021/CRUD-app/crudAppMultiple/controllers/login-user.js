@@ -12,9 +12,9 @@ exports.login_user_post = function(req, res, next){
             {
                 return res.send("Either username or password is wrong...");
             }
-            console.log("user" + JSON.stringify(user));
+            // console.log("user" + JSON.stringify(user));
             
-            req.session.uid = user.id;
+            req.session.uid = user._id;
             res.redirect("/show")
 
         }).catch((err)=>{

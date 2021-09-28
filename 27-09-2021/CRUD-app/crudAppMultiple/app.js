@@ -4,15 +4,27 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var exphbs = require('express-handlebars');
+var fileUpload = require('express-fileupload');
+
 //mongoose
 const mongoose = require('mongoose');
 
 //DB comnnection
 mongoose.connect(
-  "mongodb://localhost:27017/crud-multiple",
-  () => {console.log("Connected to DB.");}
-
-);
+  // "localhost:27017/crud-multiple",
+  "mongodb://crud-multiple:crud-multiple@localhost:27017/crud-multiple").then(
+    () => {console.log("Connected");}
+  ).catch(
+    (err) => {throw err;}
+  );
+//   (err) => {
+//     if(!err)
+//       console.log("Connected to DB.");
+//     else {
+//       throw err;
+//     }
+//   }
+// );
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -44,6 +56,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(fileUpload());
 //session
 app.use(session({secret : 'keyboard_cat', resave : true, saveUninitialized : true,  cookie : {maxAge : 60000*3, httpOnly : true}}));
 
