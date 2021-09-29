@@ -9,6 +9,7 @@ exports.signup_user_get = function (req, res, next) {
 exports.signup_user_post = function(req, res, next){
     console.log(req.files);
     var fileobj = req.files.profilepic;
+// 
     var userdata = new user_model({
         first_name : req.body.firstname,
         last_name : req.body.lastname,
@@ -16,6 +17,8 @@ exports.signup_user_post = function(req, res, next){
         password : req.body.password,
         profilepic : fileobj.name
     });
+
+  
     fileobj.mv('public/images/'+fileobj.name, function (err) {
         if (err)
           return res.send("File not uploaded...");

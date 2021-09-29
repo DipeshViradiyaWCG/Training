@@ -41,13 +41,16 @@
                                 <p class="card-text">Rs. {{price}}/-</p>
                                 <p class="card-text">{{product_desc}}</p>
                                 <a href="#" class="btn btn-primary">Buy NOW</a>
+                                <hr class="{{btn_hidden}}">
+                                <a href="/edit-product/{{_id}}" class="btn btn-primary {{btn_hidden}}">Edit</a>
+                                <a href="/delete-product/{{_id}}" class="btn btn-danger {{btn_hidden}}">Delete</a>
                             </div>
                         </div>
 
                 </div>
             {{/each}}
         </div>
-    {{!-- <p class="text-center"><a href="/add-product" class="btn btn-success mt-5 ">Add product</a></p> --}}
+    <p class="text-center"><a href="/add-product" class="btn btn-success mt-5 ">Add product</a></p>
 
 </div>  
 

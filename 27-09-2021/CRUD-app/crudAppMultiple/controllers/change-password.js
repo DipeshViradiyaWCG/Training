@@ -11,34 +11,38 @@ exports.change_password_post = function(req, res, next){
     var u_repass = req.body.repass;
 
     var u_pass;
-    user_model.findById(req.session.uid).then((user) => {
-        u_pass = user.password;
-        if(u_oldpass == u_pass){
-            if(u_newpass == u_repass){
-                user_model.findById(req.session.uid).then((user)=>{
-                    user.password = u_newpass;
-                    user.save().then(()=>{
-                        res.redirect("/show");
-
-                    }).catch((err)=>{
-                        console.log(err);
-                    })
-                }).catch((err)=>console.log(err))
-                res.redirect('/show');
-                console.log("password changed");
+    if(req.session.uid){
+        user_model.findById(req.session.uid).then((user) => {
+            u_pass = user.password;
+            if(u_oldpass == u_pass){
+                if(u_newpass == u_repass){
+                    user_model.findById(req.session.uid).then((user)=>{
+                        user.password = u_newpass;
+                        user.save().then(()=>{
+                            res.redirect("/show");
+    
+                        }).catch((err)=>{
+                            console.log(err);
+                        })
+                    }).catch((err)=>console.log(err))
+                    res.redirect('/show');
+                    console.log("password changed");
+                } else {
+                    res.json({
+                        msg : "Please enter same password in re-enter password..."
+                    });
+                }
             } else {
                 res.json({
-                    msg : "Please enter same password in re-enter password..."
+                    msg : "Invalid request for invalid user..."
                 });
             }
-        } else {
-            res.json({
-                msg : "Invalid request for invalid user..."
-            });
-        }
-    }).catch((err) => {
-        throw err;
-    });
+        }).catch((err) => {
+            throw err;
+        });
+    } else {
+        res.redirect("/logout");
+    }
 
     //     var u_email = req.bodc.email;
     //     var u_password = req.body.password;

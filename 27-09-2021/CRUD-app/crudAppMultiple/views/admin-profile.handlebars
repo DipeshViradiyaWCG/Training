@@ -13,42 +13,52 @@
   <body>
     {{> navbar}}
     <a href="/logout" class="btn btn-primary">Logout</a>
-    <a href="/change-password" class="btn btn-primary">Change Password</a>
+    {{!-- <a href="/change-password" class="btn btn-primary">Change Password</a> --}}
+    <h3><p class="text-center">Admin Profile</p></h3>
     <div class="row">
         <div class="col-3"></div>
-        <div class="col-6">
-        <h3><p class="text-center">Profile</p></h3>
-            <img src="images/{{user.profilepic}}">
+        <div class="col-3">
+            <img src="images/admin.jpeg">
+        </div>
+        <div class="col-3">
+            <h3><u>Admin data</u></h3>
+            <table>
+                <tr>
+                    <td>Name : </td>
+                    <td>Dipesh Viradiya</td>
+                </tr>
+                <tr>
+                    <td>Address : </td>
+                    <td>S 207, Eden at Godrej garden city</td>
+                </tr>
+                <tr>
+                    <td>Username : </td>
+                    <td>admin</td>
+                </tr>
+                <tr>
+                    <td>Password : </td>
+                    <td>admin</td>
+                </tr>
+            </table>
         </div>
         <div class="col-3"></div>
     </div>
-    <div class="row justify-content-evenly mt-3">
-        <div class="col-5">
-            <h3><u>User data</u></h3>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">First name</th>
-                        <th scope="col">Last name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Password</th>
-                        {{!-- <th scope="col">Action</th> --}}
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{user.first_name}}</td>
-                        <td>{{user.last_name}}</td>
-                        <td>{{user.email}}</td>
-                        <td>{{user.password}}</td>
-                        {{!-- <td><a href="/edit-student/{{_id}}" class="btn btn-primary">Edit</a>
-                        <a href="/delete-student/{{_id}}" class="btn btn-danger">Delete</a></td> --}}
-                    </tr>
-                </tbody>
-            </table>
-            {{!-- <a href="/add-student" class="btn btn-success">Add Student</a> --}}
+    <div class="row justify-content-center mt-5">
+        <div class="col-4">
+            <h3>Add Category of product</h3>
+            <form method="post">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Category</label>
+                    <input type="text" name="category" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <button type="submit" class="btn btn-primary">Add Category</button>
+            </form>
         </div>
     </div>
+    
+            
+            {{!-- <a href="/add-student" class="btn btn-success">Add Student</a> --}}
+        
 
     <!-- Optional JavaScript; choose one of the two! -->
 
