@@ -12,3 +12,19 @@
         </div>
       </div>
     </footer>
+
+    <input type="button" onclick="testAPI()" value="Test API">
+        <p id="pid"></p>
+
+    <script>
+    function testAPI(){
+        var apilink = "http://localhost:3000/add-product";
+        fetch(apilink, {mode: 'no-cors'}).then((data) => {
+            console.log(data);
+            document.getElementById("pid").innerText = data;
+        }).catch((err) => {
+            document.getElementById("pid").innerText = err;
+        });
+    }
+</script>
+    
