@@ -4,7 +4,20 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var exphbs = require('express-handlebars');
+var fileUpload = require('express-fileupload');
+const session = require('express-session');
 
+
+var mongoose = require('mongoose');
+
+
+mongoose.connect(
+  // "localhost:27017/crud-multiple",
+  "mongodb://crud-multiple:crud-multiple@localhost:27017/crud-multiple").then(
+    () => {console.log("Connected");}
+  ).catch(
+    (err) => {throw err;}
+);
 
 var indexRouter = require('./routes/index');
 
@@ -28,6 +41,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(fileUpload());
+
+app.use(session({secret : 'keyboard_cat', resave : true, saveUninitialized : true,  cookie : {maxAge : 600000, httpOnly : true}}));
 
 app.use('/', indexRouter);
 

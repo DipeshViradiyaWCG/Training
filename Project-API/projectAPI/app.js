@@ -5,7 +5,16 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var exphbs = require('express-handlebars');
+var mongoose = require('mongoose');
 
+
+mongoose.connect(
+  // "localhost:27017/crud-multiple",
+  "mongodb://crud-multiple:crud-multiple@localhost:27017/crud-multiple").then(
+    () => {console.log("Connected");}
+  ).catch(
+    (err) => {throw err;}
+);
 
 var indexRouter = require('./routes/index');
 var productRouter = require('./routes/product');

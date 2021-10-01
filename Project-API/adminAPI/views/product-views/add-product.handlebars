@@ -27,19 +27,6 @@
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-        <input type="button" onclick="testAPI()" value="Test API">
-        <p id="pid"></p>
     </div>
 </div>
 
-<script>
-    function testAPI(){
-        var apilink = "http://localhost:3000/add-product";
-        fetch(apilink, {mode: 'no-cors'}).then((data) => {
-            console.log(data);
-            document.getElementById("pid").innerText = data;
-        }).catch((err) => {
-            document.getElementById("pid").innerText = err;
-        });
-    }
-</script>

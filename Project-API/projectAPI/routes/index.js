@@ -1,12 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-const {add_product} = require("../API/add_product");
+const {show_products_get} = require("../controllers/product_controllers/show_product");
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index');
-});
+router.get('/', show_products_get);
 
 router.get('/about', function(req, res, next) {
   res.render('about');
@@ -16,6 +14,6 @@ router.get('/contact', function(req, res, next) {
   res.render('contact');
 });
 
-router.get('/add-product', add_product);
+// product routes...
 
 module.exports = router;

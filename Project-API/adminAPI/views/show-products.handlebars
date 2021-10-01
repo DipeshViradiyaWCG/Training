@@ -1,0 +1,39 @@
+{{> navbar}}
+
+<div class="container">
+    <div class="btn-group">
+        <button type="button" class="btn btn-secondary mt-3 ms-5"><a href="/show-products" class="text-decoration-none text-white">All</a></button>
+        <button type="button" class="btn btn-secondary mt-3 dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="visually-hidden">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu">
+            {{#each categories}}
+            <li><a class="dropdown-item" href="/show-products/{{category_name}}">{{category_name}}</a></li>
+            {{/each}}
+            {{!-- <li><a class="dropdown-item" href="#">Something else here</a></li> --}}
+        </ul>
+    </div>
+
+        <h3><p class="text-center">Product Data</p></h3>
+        {{!-- <img src="../images/pro3.jpeg"> --}}
+        <div class="row row-cols-3">
+            {{#each productdata}}
+                <div class="col mt-3">
+                        <div class="card" style="width: 20rem; height: 100%">
+                            <img src="/images/{{product_img}}" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">{{product_name}}</h5>
+                                <p class="card-text"><i>{{product_category}}</i></p>
+                                <p class="card-text">Rs. {{price}}/-</p>
+                                <p class="card-text">{{product_desc}}</p>
+                                <hr>
+                                <a href="/edit-product/{{_id}}" class="btn btn-primary">Edit</a>
+                                <a href="/delete-product/{{_id}}" class="btn btn-danger">Delete</a>
+                            </div>
+                        </div>
+
+                </div>
+            {{/each}}
+        </div>
+    <p class="text-center"><a href="/add-product" class="btn btn-success mt-5 ">Add product</a></p>
+</div> 

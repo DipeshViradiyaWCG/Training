@@ -419,6 +419,7 @@ header .navbar {
 .product-item {
 	border: 1px solid #eee;
 	margin-bottom: 30px;
+	height: 95%;
 }
 
 .product-item .down-content {
