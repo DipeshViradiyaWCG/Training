@@ -5,7 +5,7 @@ const {show_products_get, show_products_by_category} = require("../controllers/p
 const {edit_product_get, edit_product_post} = require("../controllers/product_controllers/edit_product");
 const {delete_product_get} = require("../controllers/product_controllers/delete_product");
 const {add_category_get, add_category_post} = require("../controllers/product_controllers/category");
-const {admin_get, admin_post} = require("../controllers/admin");
+const {admin_get, admin_post, add_admin_get, add_admin_post} = require("../controllers/admin");
 const {isAdmin} = require("../controllers/middlewares/isAdmin");
 
 
@@ -13,6 +13,8 @@ const {isAdmin} = require("../controllers/middlewares/isAdmin");
 /* GET home page. */
 router.get('/', admin_get);
 router.post('/', admin_post);
+router.get('/add-admin', add_admin_get);
+router.post('/add-admin', add_admin_post);
 
 router.get('/dashboard', isAdmin, function(req, res, next) {
   res.render('dashboard');

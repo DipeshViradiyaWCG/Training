@@ -6,7 +6,8 @@ var productSchema = new Schema({
     product_category : String,
     price : Number,
     product_desc : String,
-    product_img : String
+    product_img : String,
+    gender_ref : String
 });
 
 module.exports = mongoose.model("productapi", productSchema);

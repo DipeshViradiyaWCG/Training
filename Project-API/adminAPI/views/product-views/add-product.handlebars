@@ -9,9 +9,24 @@
                 <label for="firstname" class="form-label">Product Name</label>
                 <input type="text" class="form-control" id="firstname" name="productname" aria-describedby="emailHelp">
             </div>
-            <div class="mb-3">
+            {{!-- <div class="mb-3">
                 <label for="lastname" class="form-label">Category Name</label>
                 <input type="text" class="form-control" id="lastname" name="productcategory" aria-describedby="emailHelp">
+                <select name="productcategory" id="">
+                    {{#each categories}}
+                    <option value="{{category_name}}">{{category_name}}</option>
+                    {{/each}}
+                </select>
+            </div> --}}
+            <div class="mb-3">
+                <div class="">
+                    <label class="" for="inputGroupSelect01">Category : </label>
+                </div>
+                <select class="custom-select" name="productcategory" id="inputGroupSelect01">
+                    {{#each categories}}
+                    <option value="{{category_name}}">{{category_name}}</option>
+                    {{/each}}
+                </select>
             </div>
             <div class="mb-3">
                 <label for="class" class="form-label">Price</label>
@@ -20,6 +35,15 @@
             <div class="mb-3">
                 <label for="stream" class="form-label">Description</label>
                 <input type="text" class="form-control" id="stream" name="productdesc" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="stream" class="form-label">Suitable for</label>
+                <select name="gender_ref" id="">
+                    <option value="all">All</option>
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                </select>
+                {{!-- <input type="text" class="form-control" id="stream" name="productdesc" aria-describedby="emailHelp"> --}}
             </div>
             <div class="mb-3">
                 <label for="stream" class="form-label">Product Image</label>
