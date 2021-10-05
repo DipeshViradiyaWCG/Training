@@ -1,6 +1,7 @@
 const product_model = require("../../models/product_model");
 const category_model = require("../../models/category_model");
 const user_model = require("../../models/user_model");
+const order_model = require("../../models/order_model");
 
 exports.user_login_get = function (req, res, next) {
     res.render("login");
@@ -41,9 +42,13 @@ exports.user_signup_post = function (req, res, next) {
             throw err;
         else {
             // console.log(data);
-            req.session.uid = data._id;
-            req.session.ugender = data.u_gender;
-            res.redirect('/');
+            new order_model({user_ref : data._id}).save((err, order_data) => {
+                if(err)
+                    throw err;
+                req.session.uid = data._id;
+                req.session.ugender = data.u_gender;
+                res.redirect('/');
+            });
         }
     });
 };

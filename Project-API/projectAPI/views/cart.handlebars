@@ -1,1 +1,38 @@
-Hello
+<div class="products-heading header-text">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-content">
+              <h4>new arrivals</h4>
+              <h2>sixteen products</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="products">
+      <div class="container">
+          {{!-- {{products_data}} --}}
+          {{#each products_data}}
+        <div class="row mt-3">
+            <div class="col-3">
+            <img src="/images/{{product_img}}" class="img-fluid" alt="">
+
+            </div>
+            <div class="col-9">
+                <br><br><br>
+                Product : {{this.product_name}}
+                <br>
+                price : {{price}}
+                <br>
+
+                <a href="/user/delete-cart/{{_id}}" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+        {{/each}}
+        <hr>
+        Payable amount : {{amount}}
+      </div>
+    </div>

@@ -110,7 +110,7 @@ https://templatemo.com/tm-546-sixteen-clothing
                           <a href="#"><h4>{{product_name}}</h4></a><br>
                           <h6>Rs. {{price}}/-</h6>
                           <p>{{product_desc}}</p>
-                          <p><h5 style="text-decoration :none"><i>{{product_category}}</i></h5></p>
+                          <p><h5 style="text-decoration :none"><i>{{product_category.category_name}}</i></h5></p>
                           <ul class="stars">
                             <li><i class="fa fa-star"></i></li>
                             <li><i class="fa fa-star"></i></li>
@@ -122,7 +122,7 @@ https://templatemo.com/tm-546-sixteen-clothing
                           {{!-- <span>Reviews (24)</span><br> --}}
                           {{!-- <a href="#">❤</a> --}}
                           <a href="#" class="btn btn-primary">Buy Now</a>
-                          <a href="#" class="btn btn-primary">Add to Cart</a>
+                          <a href="/user/add-to-cart/{{_id}}" class="btn btn-primary">Add to Cart</a>
                         </div>
                       </div>
                     </div>
