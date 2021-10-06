@@ -49,8 +49,9 @@ exports.show_products_get = function(req, res, next){
 
 exports.show_product_get = function(req, res, next){
     console.log("in show");
-    product_model.findOne({_id : req.params.id}).lean().then((data) => {
+    product_model.findOne({_id : req.params.id}).populate('product_category').lean().then((data) => {
         console.log("test 1");
+        console.log(data);
         res.render('product', {productdata : data, userExist : req.session.uid ? true : false});
     }).catch((err) => {
         throw err;

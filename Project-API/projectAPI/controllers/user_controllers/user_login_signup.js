@@ -32,7 +32,7 @@ exports.user_signup_post = function (req, res, next) {
     fileobj.mv('public/images/'+fileobj.name, function (err) {
         if (err)
             return res.send("File not uploaded...public");
-        fileobj.mv('/home/webcodegenie/Documents/WCG dipesh/Training 2021 codes/Aug - Sept/Training/Project-API/projectAPI/public/images/'+fileobj.name, function (err) {
+        fileobj.mv('/home/webcodegenie/Documents/WCG dipesh/Training 2021 codes/Aug - Sept/Training/Project-API/adminAPI/public/images/'+fileobj.name, function (err) {
             if (err)
                 return res.send("File not uploaded...data");
         });
@@ -60,6 +60,8 @@ exports.user_login_post = function (req, res, next) {
     user_model.findOne({u_email : u_email}).then((user) => {
         if((!user) || (user.u_password != u_password)) 
             res.redirect("/user/login");
+        else if(!user.isActive)
+            res.render("login", {not_active : true});
         else {
             req.session.ugender = user.u_gender;
             req.session.uid = user._id;

@@ -1,4 +1,5 @@
 const admin_model = require("../models/admin_model");
+const user_model = require("../models/user_model");
 
 exports.admin_get = function (req, res, next) {
     res.render("index");
@@ -32,6 +33,46 @@ exports.add_admin_post = function (req, res, next) {
     }
     new admin_model(admin_add_data).save().then(() => {
         res.redirect("/dashboard");
+    }).catch((err) => {
+        throw err;
+    });
+};
+
+exports.show_users_get = function (req, res, next) {
+    user_model.find().lean().then((users) => {
+        res.render('show-users', {users : users});
+    }).catch((err) => {
+        throw err;
+    });
+};
+
+exports.deactivate_user_get = function (req, res, next) {
+    user_model.findByIdAndUpdate(req.params.id, {
+        
+        isActive : false
+        
+    }).then(() => {
+        res.redirect("/show-users");
+    }).catch((err) => {
+        throw err;
+    });
+};
+
+exports.activate_user_get = function (req, res, next) {
+    user_model.findByIdAndUpdate(req.params.id, {
+        
+        isActive : true
+        
+    }).then(() => {
+        res.redirect("/show-users");
+    }).catch((err) => {
+        throw err;
+    });
+};
+
+exports.delete_user_get = function (req, res, next) {
+    user_model.findByIdAndRemove(req.params.id).then(() => {
+        res.redirect('/show-users');
     }).catch((err) => {
         throw err;
     });

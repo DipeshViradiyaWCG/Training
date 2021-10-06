@@ -1,0 +1,67 @@
+{{> navbar}}
+
+<style>
+    table{
+        border: 2px solid black;
+    }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-6">
+            <table class="table">
+                <tr>
+                    <th>
+                        Profile
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Mobile Number
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        Gender
+                    </th>
+                    <th>
+                        Delete
+                    </th>
+                    <th>
+                        Activate / Deactivate
+                    </th>
+                </tr>
+                {{#each users}}
+                <tr>
+                    <td><img src="/images/{{u_profilepic}}" width="80%" height="80%" alt=""></td>
+                    <td>{{u_name}}</td>
+                    <td>{{u_email}}</td>
+                    <td>{{u_monumber}}</td>
+                    <td>{{u_address}}</td>
+                    <td>{{u_gender}}</td>
+                    <td>
+                                <a href="/delete-user/{{_id}}" class="btn btn-danger">Delete data</a>
+                                </td>
+                                <td>
+                                {{#if isActive}}
+                                <a href="/deactivate-user/{{_id}}" class="btn btn-danger">Block Account</a>
+                                {{else}}
+                                <a href="/activate-user/{{_id}}" class="btn btn-secondary">Activate Account</a>
+                                <span class="text-danger">Deactivated...</span>
+                                {{/if}}
+
+                                </td>
+                    
+                        </div>
+                    </td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+    </div>
+</div>
