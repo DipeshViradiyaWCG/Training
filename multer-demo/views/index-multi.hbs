@@ -1,0 +1,16 @@
+<form enctype="multipart/form-data" method="post">
+    <input type="file" name="file1" id="" multiple>
+    <br><br>
+    <input type="submit" value="Upload">
+</form>
+<br>
+<br>
+
+{{#if files}}
+<h4>All files...</h4>
+{{#each files}}
+<img src="{{f_name}}" alt="" srcset="" height="150px">
+{{/each}}
+{{else}}
+<h4>No files uploaded yet...</h4>
+{{/if}}
