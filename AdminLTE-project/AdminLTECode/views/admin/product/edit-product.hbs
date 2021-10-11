@@ -1,0 +1,58 @@
+{{> header}}
+{{> sidebar}}
+
+    <div class="content-wrapper">
+
+        <section class="content">   
+            <div class="container-fluid">
+                
+                <div class="row justify-content-evenly mt-3">
+                    <div class="col-6">
+                        <h3>Edit Product</h3>
+                        <hr>
+                        <form method="POST" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="firstname" class="form-label">Product Name</label>
+                                <input type="text" class="form-control" id="firstname" name="productname" value="{{products.productname}}" aria-describedby="emailHelp">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="firstname" class="form-label">Product Details</label>
+                                <input type="text" class="form-control" id="firstname" name="productdetail" value="{{products.productdetail}}" aria-describedby="emailHelp">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="firstname" class="form-label">Price</label>
+                                <input type="number" class="form-control" id="firstname" name="productprice" value="{{products.productprice}}" aria-describedby="emailHelp">
+                            </div>
+                            {{!-- <div class="mb-3">
+                                <label for="firstname1" class="form-label">Related Category</label>
+                                <input type="text" class="form-control" id="firstname1" name="_category" aria-describedby="emailHelp">
+                            </div> --}}
+
+                            <div class="mb-3">
+                                <label for="stream" class="form-label">Product Image</label>
+                                <input type="file" class="form-control" id="stream" name="productimage" aria-describedby="emailHelp">
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="">
+                                    <label class="" for="inputGroupSelect01">Subcategory : </label>
+                                </div>
+                                <select class="custom-select" name="_subcategory" id="inputGroupSelect01">
+                                    {{#each subcategories}}
+                                        <option value="{{subcategoryname}}">{{subcategoryname}}</option>
+                                    {{/each}}   
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+{{> footer}}

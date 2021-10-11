@@ -4,7 +4,7 @@ var router = express.Router();
 const { adminSignupPost, adminLoginPost } = require('../../controllers/admin/admin');
 
 //Models
-const adminModel = require("../../models/admin");
+// const adminModel = require("../../models/admin");
 
 /* GET home page. */
 router.get('/login', function(req, res, next) {

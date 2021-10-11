@@ -6,7 +6,12 @@ var logger = require("morgan");
 const hbs = require("express-handlebars");
 
 const session = require('express-session');
+var fileUpload = require('express-fileupload');
 
+
+const admincategoryRouter = require("./routes/admin/category");
+const adminSubcategoryRouter = require("./routes/admin/subcategory");
+const productRouter = require("./routes/admin/product");
 
 var mongoose = require('mongoose');
 
@@ -32,10 +37,10 @@ app.engine(
   "hbs",
   hbs({
     extname: "hbs",
-    layoutsDir : __dirname + "/views/admin/layouts/",
+    layoutsDir : __dirname + "/views/layouts/",
     defaultLayout: 'main',
 
-    partialsDir: __dirname + "/views/admin/partials/",
+    partialsDir: __dirname + "/views/partials/",
   })
 );
 
@@ -45,8 +50,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(session({secret : 'keyboard_cat', resave : true, saveUninitialized : true,  cookie : {maxAge : 600000, httpOnly : true}}));
+app.use(fileUpload());
+
 
 app.use("/admin", adminRouter);
+app.use("/admin/category", admincategoryRouter);  
+app.use("/admin/subcategory", adminSubcategoryRouter);
+app.use("/admin/product", productRouter);
+
 app.use("/users", usersRouter);
 
 // catch 404 and forward to error handler

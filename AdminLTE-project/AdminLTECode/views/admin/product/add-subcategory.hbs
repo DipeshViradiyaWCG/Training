@@ -1,0 +1,43 @@
+{{> header}}
+{{> sidebar}}
+
+    <div class="content-wrapper">
+
+        <section class="content">   
+            <div class="container-fluid">
+                
+                <div class="row justify-content-evenly mt-3">
+                    <div class="col-6">
+                        <h3>Add Sub Category</h3>
+                        <hr>
+                        <form method="POST">
+                            <div class="mb-3">
+                                <label for="firstname" class="form-label">Subcategory Name</label>
+                                <input type="text" class="form-control" id="firstname" name="subcategoryname" aria-describedby="emailHelp">
+                            </div>
+                            {{!-- <div class="mb-3">
+                                <label for="firstname1" class="form-label">Related Category</label>
+                                <input type="text" class="form-control" id="firstname1" name="_category" aria-describedby="emailHelp">
+                            </div> --}}
+
+                            <div class="mb-3">
+                                <div class="">
+                                    <label class="" for="inputGroupSelect01">Category : </label>
+                                </div>
+                                <select class="custom-select" name="_category" id="inputGroupSelect01">
+                                    {{#each categories}}
+                                    <option value="{{categoryname}}">{{categoryname}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+{{> footer}}

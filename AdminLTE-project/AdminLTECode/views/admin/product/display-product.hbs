@@ -1,0 +1,53 @@
+
+    {{> header}}
+    {{> sidebar}}
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-8">
+            <table class="table">
+                <tr>
+                    <th>
+                        Image
+                    </th>
+                    <th>
+                        Product Name
+                    </th>
+                    <th>
+                        Details
+                    </th>
+                    <th>
+                        Price
+                    </th>
+                    <th>
+                        Sub Category
+                    </th>
+                    <th>
+                        Category
+                    </th>
+                    <th>
+                        Edit
+                    </th>
+                    <th>
+                        Delete
+                    </th>
+                </tr>
+                {{#each products}}
+                <tr>
+                    <td><img src="../../images/{{productimage}}" alt=""></td>
+                    <td>{{productname}}</td>
+                    <td>{{productdetail}}</td>
+                    <td>{{productprice}}</td>
+                    <td>{{_subcategory.subcategoryname}}</td>
+                    <td>{{_subcategory._category.categoryname}}</td>
+                    <td><a href="/admin/product/edit/{{_id}}" class="btn btn-secondary">Edit</a></td>
+                    <td><a href="/admin/product/delete/{{_id}}" class="btn btn-danger">Delete</a></td>
+
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+    </div>
+</div>
+
+
+    {{> footer}}
