@@ -1,7 +1,7 @@
 const categoryModel = require("../../models/category");
 
 exports.getAddCategory = function (req, res, next) {
-  res.render("admin/product/add-category", { title: "Add Category" });
+  res.render("admin/product/category/add-category", { title: "Add Category" });
 };
 
 exports.postAddCategory = async function (req, res, next) {
@@ -17,7 +17,7 @@ exports.postAddCategory = async function (req, res, next) {
 exports.getDisplayCategory = async function (req, res, next) {
   let categories = await categoryModel.find().lean();
 
-  res.render("admin/product/display-category", {
+  res.render("admin/product/category/display-category", {
     title: "Display Category",
     categories,
   });
@@ -29,7 +29,7 @@ exports.getEditCategory = async function (req, res, next) {
       .findById(req.params.id)
       .select("categoryname")
       .lean();
-    res.render("admin/product/edit-category", {
+    res.render("admin/product/category/edit-category", {
       title: "Edit Category",
       categoryname: categoryObject.categoryname,
     });

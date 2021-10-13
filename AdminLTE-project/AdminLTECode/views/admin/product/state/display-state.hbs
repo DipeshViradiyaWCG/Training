@@ -1,0 +1,33 @@
+
+    {{> header}}
+    {{> sidebar}}
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-6">
+            <table class="table">
+                <tr>
+                    <th>
+                        State Name
+                    </th>
+                    <th>
+                        Edit
+                    </th>
+                    <th>
+                        Delete
+                    </th>
+                </tr>
+                {{#each states}}
+                <tr>
+                    <td>{{statename}}</td>
+                    <td><a href="/admin/state/edit/{{_id}}" class="btn btn-secondary">Edit</a></td>
+                    <td><a href="/admin/state/delete/{{_id}}" class="btn btn-danger">Delete</a></td>
+
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+    </div>
+</div>
+
+
+    {{> footer}}

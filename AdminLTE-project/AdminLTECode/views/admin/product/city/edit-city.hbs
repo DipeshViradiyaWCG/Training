@@ -1,0 +1,39 @@
+{{> header}}
+{{> sidebar}}
+
+    <div class="content-wrapper">
+
+        <section class="content">   
+            <div class="container-fluid">
+                
+                <div class="row justify-content-evenly mt-3">
+                    <div class="col-6">
+                        <h3>Edit City</h3>
+                        <hr>
+                        <form method="POST">
+                            <div class="mb-3">
+                                <label for="firstname" class="form-label">City Name</label>
+                                <input type="text" class="form-control" id="firstname" name="cityname" value="{{cityname}}" aria-describedby="emailHelp">
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="">
+                                    <label class="" for="inputGroupSelect01">State : </label>
+                                </div>
+                                <select class="custom-select" name="_state" id="inputGroupSelect01">
+                                    {{#each states}}
+                                    <option value="{{statename}}">{{statename}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+{{> footer}}

@@ -5,7 +5,7 @@ const productModel = require("../../models/product");
 exports.getAddProduct = async function (req, res, next) {
     let subcategories = await subcategoryModel.find().select('subcategoryname').lean();
     // console.log(subcategories);
-    res.render("admin/product/add-product", { title: "Add product" , subcategories});
+    res.render("admin/product/product/add-product", { title: "Add product" , subcategories});
 };
 
 exports.postAddProduct = async function (req, res, next) {
@@ -37,7 +37,7 @@ exports.getDisplayProduct = async function (req, res, next) {
             path : '_category',
         }
     }).lean();
-    res.render("admin/product/display-product", {products});
+    res.render("admin/product/product/display-product", {products});
     // console.log(products);
     // console.log(products[0]._subcategory._category);
 };
@@ -52,7 +52,7 @@ exports.getEditProduct = async function (req, res, next) {
     let subcategories = await subcategoryModel.find().lean();
     // console.log(products);
     // console.log(subcategories);
-    res.render("admin/product/edit-product", {products, subcategories});
+    res.render("admin/product/product/edit-product", {products, subcategories});
 };
 
 exports.postEditProduct = async function (req, res, next) {

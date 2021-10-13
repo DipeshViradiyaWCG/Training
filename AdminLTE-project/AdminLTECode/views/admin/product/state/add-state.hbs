@@ -1,0 +1,29 @@
+    {{> header}}
+    {{> sidebar}}
+
+<div class="content-wrapper">
+
+    <section class="content">   
+        <div class="container-fluid">
+            
+            <div class="row justify-content-evenly mt-3">
+                <div class="col-6">
+                    <h3>Add State</h3>
+                    <hr>
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label for="firstname" class="form-label">State Name</label>
+                            <input type="text" class="form-control" id="firstname" name="statename" aria-describedby="emailHelp">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+    {{> footer}}
+

@@ -1,0 +1,37 @@
+
+    {{> header}}
+    {{> sidebar}}
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-6">
+            <table class="table">
+                <tr>
+                    <th>
+                        City Name
+                    </th>
+                    <th>
+                        Related State Name
+                    </th>
+                    <th>
+                        Edit
+                    </th>
+                    <th>
+                        Delete
+                    </th>
+                </tr>
+                {{#each cities}}
+                <tr>
+                    <td>{{cityname}}</td>
+                    <td>{{_state.statename}}</td>
+                    <td><a href="/admin/city/edit/{{_id}}" class="btn btn-secondary">Edit</a></td>
+                    <td><a href="/admin/city/delete/{{_id}}" class="btn btn-danger">Delete</a></td>
+
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+    </div>
+</div>
+
+
+    {{> footer}}

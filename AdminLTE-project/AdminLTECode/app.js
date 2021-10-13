@@ -8,10 +8,17 @@ const hbs = require("express-handlebars");
 const session = require('express-session');
 var fileUpload = require('express-fileupload');
 
+// const isLogin = require("./controllers/admin/middleware/isLogin");
+
 
 const admincategoryRouter = require("./routes/admin/category");
 const adminSubcategoryRouter = require("./routes/admin/subcategory");
 const productRouter = require("./routes/admin/product");
+const stateRouter = require("./routes/admin/state");
+const cityRouter = require("./routes/admin/city");
+const areaRouter = require("./routes/admin/area");
+const userRouter = require("./routes/admin/user");
+
 
 var mongoose = require('mongoose');
 
@@ -54,9 +61,16 @@ app.use(fileUpload());
 
 
 app.use("/admin", adminRouter);
+//middleware
+// app.use(isLogin());
 app.use("/admin/category", admincategoryRouter);  
 app.use("/admin/subcategory", adminSubcategoryRouter);
 app.use("/admin/product", productRouter);
+app.use("/admin/state", stateRouter);
+app.use("/admin/city", cityRouter);
+app.use("/admin/area", areaRouter);
+app.use("/admin/user", userRouter);
+
 
 app.use("/users", usersRouter);
 

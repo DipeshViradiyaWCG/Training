@@ -1,0 +1,82 @@
+{{> header}}
+{{> sidebar}}
+
+    <div class="content-wrapper">
+
+        <section class="content">   
+            <div class="container-fluid">
+                
+                <div class="row justify-content-evenly mt-3">
+                    <div class="col-6">
+                        <h3>Edit User</h3>
+                        <hr>
+                        <form method="POST" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="firstname" class="form-label">User Name</label>
+                                <input type="text" class="form-control" id="firstname" name="username" value="{{users.username}}" aria-describedby="emailHelp">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="firstname" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="firstname" name="useremail" value="{{users.useremail}}" aria-describedby="emailHelp">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="firstname" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="firstname" name="userpassword" value="{{users.userpassword}}" aria-describedby="emailHelp">
+                            </div>
+
+                            {{!-- <div class="mb-3">
+                                <label for="firstname1" class="form-label">Related Category</label>
+                                <input type="text" class="form-control" id="firstname1" name="_category" aria-describedby="emailHelp">
+                            </div> --}}
+
+                            <div class="mb-3">
+                                <label for="stream" class="form-label">Profile picture</label>
+                                <input type="file" class="form-control" id="stream" name="userprofilepic" aria-describedby="emailHelp">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="gen" class="form-label">Gender</label>
+                                <select class="form-control" name="usergender" id="gen">
+                                    
+                                    <option value="" disabled selected>
+                                    --- Select Gender ---
+                                    </option>
+                                    <option value="male">
+                                    Male
+                                    </option>
+                                    <option value="female">
+                                    Female
+                                    </option>
+                                    <option value="other">
+                                    Other
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="firstname" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="firstname" name="useraddress" value="{{users.useraddress}}" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                                <div class="">
+                                    <label class="" for="inputGroupSelect01">Area : </label>
+                                </div>
+                                <select class="custom-select" name="_area" id="inputGroupSelect01">
+                                    {{#each areas}}
+                                        <option value="{{areaname}}">{{areaname}}</option>
+                                    {{/each}}   
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+{{> footer}}

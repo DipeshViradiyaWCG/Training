@@ -1,0 +1,40 @@
+
+    {{> header}}
+    {{> sidebar}}
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-8">
+            <table class="table">
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        User Name
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    {{!-- <th>
+                        Edit
+                    </th>
+                    <th>
+                        Delete
+                    </th> --}}
+                </tr>
+                {{#each admins}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{username}}</td>
+                    <td>{{email}}</td>
+                    {{!-- <td><a href="/admin/user/edit/{{_id}}" class="btn btn-secondary">Edit</a></td>
+                    <td><a href="/admin/user/delete/{{_id}}" class="btn btn-danger">Delete</a></td> --}}
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+    </div>
+</div>
+
+
+    {{> footer}}

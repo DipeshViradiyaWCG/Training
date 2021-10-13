@@ -4,10 +4,11 @@ const categoryModel = require("../../models/category");
 
 exports.getAddSubCategory = async function (req, res, next) {
     let categories = await categoryModel.find().lean();
+    
 
 
-    res.render("admin/product/add-subcategory", { title: "Add Sub Category", categories });
-  };
+    res.render("admin/product/subcategory/add-subcategory", { title: "Add Sub Category", categories });
+};
   
 exports.postAddSubCategory = async function (req, res, next) {
     const {subcategoryname, _category} = req.body;
@@ -18,15 +19,21 @@ exports.postAddSubCategory = async function (req, res, next) {
     } catch (error) {
         next(error);
     }
-   console.log(req.body);
+  //  console.log(req.body);
 };
   
 
 exports.getDisplaySubCategory = async function (req, res, next) {
     let subcategories = await subcategoryModel.find().populate('_category').lean();
     // console.log(subcategories);
+    // let subcategories = await subcategoryModel.find().populate('_category').lean();
+    for (let index = 0; index < subcategories.length; index++) {
+      if(!(subcategories[index]._category))
+        await subcategoryModel.findByIdAndDelete(subcategories[index]._id);
+    }
+    subcategories = await subcategoryModel.find().populate('_category').lean();
 
-    res.render("admin/product/display-subcategory", {
+    res.render("admin/product/subcategory/display-subcategory", {
       title: "Display Sub Category",
       subcategories,
     });
@@ -43,7 +50,7 @@ exports.getEditSubCategory = async function (req, res, next) {
 
 
         // console.log(subcategoryObject);
-        res.render("admin/product/edit-subcategory", {
+        res.render("admin/product/subcategory/edit-subcategory", {
             title: "Edit Sub Category",
             subcategoryname : subcategoryobj.subcategoryname,
             categories
@@ -72,5 +79,5 @@ exports.getDeleteSubCategory = async function (req, res, next) {
     } catch (error) {
       next(error);
     }
-  };
+};
   

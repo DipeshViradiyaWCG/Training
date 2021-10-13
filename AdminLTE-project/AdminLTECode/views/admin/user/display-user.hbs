@@ -1,0 +1,61 @@
+
+    {{> header}}
+    {{> sidebar}}
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-8">
+            <table class="table">
+                <tr>
+                    <th>
+                        Profile Image
+                    </th>
+                    <th>
+                        User Name
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Gender
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        Area
+                    </th>
+                    <th>
+                        City
+                    </th>
+                    <th>
+                        State
+                    </th>
+                    <th>
+                        Edit
+                    </th>
+                    <th>
+                        Delete
+                    </th>
+                </tr>
+                {{#each users}}
+                <tr>
+                    <td><img src="../../images/{{userprofilepic}}" alt=""></td>
+                    <td>{{username}}</td>
+                    <td>{{useremail}}</td>
+                    <td>{{usergender}}</td>
+                    <td>{{useraddress}}</td>
+                    <td>{{_area.areaname}}</td>
+                    <td>{{_area._city.cityname}}</td>
+                    <td>{{_area._city._state.statename}}</td>
+                    <td><a href="/admin/user/edit/{{_id}}" class="btn btn-secondary">Edit</a></td>
+                    <td><a href="/admin/user/delete/{{_id}}" class="btn btn-danger">Delete</a></td>
+
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+    </div>
+</div>
+
+
+    {{> footer}}
