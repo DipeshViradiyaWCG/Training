@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {{!-- Hello --}}
+    <br>
+    ONLINE USERS
+    <br>
+    <ul id="onlineusers">
+
+    </ul>
+    <br><br><br>
+    <ul id="messages">
+
+    </ul>
+
+    <form action="" method="post" id="form">
+        <input type="text" name="message" id="message" />
+        <input type="submit" value="Send">
+    </form>
+
+    <a href="/logout">logout</a>
+
+
+
+    {{!-- <script src="/socket.io/socket.io.js"></script> --}}
+    <script src="https://cdn.socket.io/4.2.0/socket.io.min.js" integrity="sha384-PiBR5S00EtOj2Lto9Uu81cmoyZqR57XcOna1oAuVuIEjzj0wpqDVfD0JA9eXlRsj" crossorigin="anonymous"></script>
+    <script>
+    var socket = io();
+    var formobj = document.getElementById("form");
+    var msgObj = document.getElementById("message");
+
+    formobj.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (msgObj.value) {
+            socket.emit('chat message', msgObj.value);  
+
+            let msgelement = document.createElement("li");
+            msgelement.innerHTML = `------------------------------------------${msgObj.value}`;
+            document.getElementById("messages").appendChild(msgelement);
+            msgObj.value = '';
+        }
+    });
+
+    //socket.on("show chat", (msgmodelobj) => {
+    //    console.log("show chat called")
+    //    for(let i = 0; i < msgmodelobj.length; i++){
+    //        let msgelement = document.createElement("li");
+    //        msgelement.innerHTML = `--------------${msgmodelobj[i]._sender.username} -----> ${msgmodelobj[i]._receiver.username}-------${msgmodelobj[i].msgdata}--------------------------------------------------`;
+    //        document.getElementById("messages").appendChild(msgelement);
+    //    }
+    //})
+
+    socket.on("broadcast chat",(msgdata) => {
+        let msgelement = document.createElement("li")
+        msgelement.innerHTML = `<p>${msgdata}</p>`;
+        document.getElementById("messages").appendChild(msgelement);
+    });
+
+    socket.on("show online", (arr) => {
+        for(let i = 0; i < arr.length; i++){
+            let temp = document.createElement("li");
+            temp.innerHTML = `${arr[i]}`;
+            document.getElementById("onlineusers").appendChild(msgelement);
+        }
+    });
+
+
+    </script>
+</body>
+</html>
