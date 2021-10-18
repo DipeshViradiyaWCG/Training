@@ -8,6 +8,7 @@
 </head>
 <body>
     {{!-- Hello --}}
+    You Are => {{current}}
     <br>
     ONLINE USERS
     <br>
@@ -41,7 +42,7 @@
             socket.emit('chat message', msgObj.value);  
 
             let msgelement = document.createElement("li");
-            msgelement.innerHTML = `------------------------------------------${msgObj.value}`;
+            msgelement.innerHTML = `<p style="color : blue">------------------------------------------${msgObj.value}</p>`;
             document.getElementById("messages").appendChild(msgelement);
             msgObj.value = '';
         }
@@ -63,10 +64,11 @@
     });
 
     socket.on("show online", (arr) => {
+        document.getElementById("onlineusers").innerHTML = "";
         for(let i = 0; i < arr.length; i++){
             let temp = document.createElement("li");
-            temp.innerHTML = `${arr[i]}`;
-            document.getElementById("onlineusers").appendChild(msgelement);
+            temp.innerHTML = `${arr[i].username}`;
+            document.getElementById("onlineusers").appendChild(temp);
         }
     });
 

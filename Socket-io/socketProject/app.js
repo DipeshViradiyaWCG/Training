@@ -11,7 +11,7 @@ const msgModel  = require("./models/message");
 
 app.use(express.urlencoded({ extended: false }));
 
-let onlineusers = [];
+// let onlineusers = [];
 
 
 
@@ -28,6 +28,7 @@ app.engine(
 
 
 var sessionUser;
+var current;
 
 var mongoose = require('mongoose');
 
@@ -57,6 +58,7 @@ app.post("/signup", async (req, res, next) => {
   });
   req.session.user = uObj._id;
   sessionUser = req.session.user;
+  current = uObj.username;
 
   res.redirect("/chat");
 
@@ -70,6 +72,7 @@ app.post("/login", async (req, res, next) => {
   let uObj = await userModel.findOne({username : req.body.username}).lean();
   req.session.user = uObj._id;
   sessionUser = req.session.user;
+  current = uObj.username;
   res.redirect("/chat");
 });
 
@@ -79,7 +82,7 @@ app.get("/logout", async (req, res, next) => {
 })
 
 app.get("/chat", async (req, res, next) => {
-  res.render("chat");
+  res.render("chat", {current});
 })
 
 
@@ -89,7 +92,13 @@ io.on('connection', async (socket) => {
   
   let userObj = await userModel.findByIdAndUpdate(  sessionUser    , {socketId : socket.id}); 
   console.log("A user is connected...");
-  onlineusers.push(sessionUser);
+
+  console.log("Connected users...");
+  console.log(io.sockets.sockets);
+
+  let onlineusers = await userModel.find({ socketId: { $ne: null } }).lean();
+  socket.emit('show online', onlineusers);
+  // onlineusers.push(sessionUser);
 
 
   // let msgmodelobj = await msgModel.find().populate('_sender').populate('_receiver').sort({
@@ -99,8 +108,8 @@ io.on('connection', async (socket) => {
 
   // console.log(msgmodelobj);
   // await socket.emit("show chat", msgmodelobj);
-  let listofonline = await online
-  await socket.emit("show online", onlineusers);
+  // let listofonline = await online
+  // await socket.emit("show online", onlineusers);
 
   
 
@@ -113,14 +122,26 @@ io.on('connection', async (socket) => {
     socket.broadcast.emit("broadcast chat", msgdata);
   });
 
-  socket.on('disconnect', () => {
+  socket.on("logout", async () => {
     console.log('user disconnected');
-    if (onlineusers.indexOf(sessionUser) > -1) {
-      array.splice(onlineusers.indexOf(sessionUser), 1);
-    }
+    console.log(socket.id);
+    await userModel.findOneAndUpdate({socketId : socket.id}, {socketId : null});
+    let onlineusersafterdisconnect = await userModel.find({ socketId: { $ne: null } }).lean();
+    socket.emit('show online', onlineusersafterdisconnect);
+  });
+
+  socket.on('disconnect', async () => {
+    console.log('user disconnected');
+    console.log(socket.id);
+    await userModel.findOneAndUpdate({socketId : socket.id}, {socketId : null});
+    let onlineusersafterdisconnect = await userModel.find({ socketId: { $ne: null } }).lean();
+    socket.emit('show online', onlineusersafterdisconnect);
+    // if (onlineusers.indexOf(sessionUser) > -1) {
+    //   array.splice(onlineusers.indexOf(sessionUser), 1);
+    // }
   });
 });
 
-server.listen(3000, () => {
-  console.log('listening on *:3000');
+server.listen(3001, () => {
+  console.log('listening on *:3001');
 });
