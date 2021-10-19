@@ -15,13 +15,16 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-6">
+                <h1>Login</h1>
+                <br>
                 {{#if success}}
                 <h1>Validated...</h1>
+                <br>
                 {{/if}}
                 <form method="POST">
 
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <label for="exampleInputEmail1" class="form-label">Email</label>
                         <input type="text" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                         {{#if errs.email}}
                             <div class="form-text text-danger">{{errs.email.[0]}}</div>
@@ -33,54 +36,6 @@
                         <input type="password" name="password" class="form-control" id="exampleInputPassword1">
                         {{#if errs.password}}
                             <div class="form-text text-danger">{{errs.password.[0]}}</div>
-                        {{/if}}
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Name</label>
-                        <input type="name" name="name" class="form-control" id="exampleInputPassword1">
-                        {{#if errs.name}}
-                            <div class="form-text text-danger">{{errs.name.[0]}}</div>
-                        {{/if}}
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="exampleInputPassword2" class="form-label">Phone number <span style="font-size: 13px;">(Without country prefix)</span></label>
-                        <input type="text" name="number" class="form-control" id="exampleInputPassword2">
-                        {{#if errs.number}}
-                            <div class="form-text text-danger">{{errs.number.[0]}}</div>
-                        {{/if}}
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="exampleInputPassword2" class="form-label">PAN card number</label>
-                        <input type="text" name="pancard" class="form-control" id="exampleInputPassword2">
-                        {{#if errs.pancard}}
-                            <div class="form-text text-danger">{{errs.pancard.[0]}}</div>
-                        {{/if}}
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="exampleInputPassword2" class="form-label">Adhaar card number</label>
-                        <input type="text" name="adhaarcard" class="form-control" id="exampleInputPassword2">
-                        {{#if errs.adhaarcard}}
-                            <div class="form-text text-danger">{{errs.adhaarcard.[0]}}</div>
-                        {{/if}}
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="exampleInputPassword2" class="form-label">Passport number</label>
-                        <input type="text" name="passport" class="form-control" id="exampleInputPassword2">
-                        {{#if errs.passport}}
-                            <div class="form-text text-danger">{{errs.passport.[0]}}</div>
-                        {{/if}}
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="exampleInputPassword2" class="form-label">GST number</label>
-                        <input type="text" name="gst" class="form-control" id="exampleInputPassword2">
-                        {{#if errs.gst}}
-                            <div class="form-text text-danger">{{errs.gst.[0]}}</div>
                         {{/if}}
                     </div>
 

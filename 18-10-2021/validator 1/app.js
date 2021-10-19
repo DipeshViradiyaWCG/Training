@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const mongoose = require("mongoose");
+
 const session = require('express-session');
 
 
@@ -11,6 +13,14 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+mongoose.connect(
+  // "localhost:27017/crud-multiple",
+  "mongodb://crud-multiple:crud-multiple@localhost:27017/crud-multiple").then(
+    () => {console.log("Connected");}
+  ).catch(
+    (err) => {throw err;}
+);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
