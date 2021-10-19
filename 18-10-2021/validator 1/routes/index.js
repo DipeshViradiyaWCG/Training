@@ -29,6 +29,7 @@ router.get('/bootstrap', (req, res) => { res.render('index2'); });
 
 router.post('/bootstrap', [
   check('name')
+    .trim()
     .not()
     .isEmpty()
     .withMessage("Name is necessary")
@@ -37,6 +38,7 @@ router.post('/bootstrap', [
     .isLength({min : 3})
     .withMessage("Name should be atleast 3 characters"),
   check('email')
+    .trim()
     .not()
     .isEmpty()
     .withMessage("E mail is necessary")
@@ -45,6 +47,7 @@ router.post('/bootstrap', [
     .isLength({min : 10})
     .withMessage("Email should be atleast 10 characters long"),
   check('password')
+    .trim()
     .not()
     .isEmpty()
     .withMessage("Password is necessary")
@@ -53,6 +56,7 @@ router.post('/bootstrap', [
     .matches('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})')
     .withMessage("Entered password's strength is too weak - {should contain Uppercase letter, lowercase letter, numerical values, special characters}"),
   check('number')
+    .trim()
     .not()
     .isEmpty()
     .withMessage("Phone number is necessary")
@@ -62,6 +66,7 @@ router.post('/bootstrap', [
     // .isLength({min : 10, max : 10})
     // .withMessage("Indian mobile number contains exact 10 numbers"),
   check('pancard')
+    .trim()
     .not()
     .isEmpty()
     .withMessage("Pan card number is necessary")
@@ -70,6 +75,7 @@ router.post('/bootstrap', [
     .matches('[A-Z]{5}[0-9]{4}[A-Z]{1}')
     .withMessage("Entered PAN card number does not match with official pattern provided by IND gov."),
   check('adhaarcard')
+    .trim()
     .not()
     .isEmpty()
     .withMessage("Adhaar card is necessary")
@@ -78,6 +84,7 @@ router.post('/bootstrap', [
     .matches('[0-9]{12}')
     .withMessage("Entered Adhaar card number does not match with official pattern provided by IND gov."),
   check('passport')
+    .trim()
     .not()
     .isEmpty()
     .withMessage("Passport number is necessary")
@@ -86,6 +93,7 @@ router.post('/bootstrap', [
     .matches('^[A-PR-WYa-pr-wy][1-9]\\d\\s?\\d{4}[1-9]$')    
     .withMessage("Entered Passport number does not match with official pattern provided by IND gov."),
   check('gst')
+    .trim()
     .not()
     .isEmpty()
     .withMessage("GST number is necessary")
@@ -121,6 +129,7 @@ router.get('/signup', (req, res) => { res.render('signup'); });
 
 router.post('/signup', [
   check('name')
+    .trim()
     .not()
     .isEmpty()
     .withMessage("Name is necessary")
@@ -129,6 +138,7 @@ router.post('/signup', [
     .isLength({min : 3})
     .withMessage("Name should be atleast 3 characters"),
   check('email')
+    .trim()
     .not()
     .isEmpty()
     .withMessage("E mail is necessary")
@@ -143,6 +153,7 @@ router.post('/signup', [
       return true;
     }),
   check('password')
+    .trim()
     .not()
     .isEmpty()
     .withMessage("Password is necessary")
@@ -178,6 +189,7 @@ router.get('/login', (req, res) => { res.render('login'); });
 
 router.post('/login', [
   check('email')
+    .trim()
     .not()
     .isEmpty()
     .withMessage("E mail is necessary")
@@ -193,6 +205,7 @@ router.post('/login', [
         throw new Error("Either email or password is wrong");
     }),
   check('password')
+    .trim()
     .not()
     .isEmpty()
     .withMessage("Password is necessary")
@@ -231,6 +244,7 @@ router.post('/login', [
 
 router.post('/signupapi', [
   check('name')
+    .trim()
     .not()
     .isEmpty()
     .withMessage("Name is necessary")
@@ -239,6 +253,7 @@ router.post('/signupapi', [
     .isLength({min : 3})
     .withMessage("Name should be atleast 3 characters"),
   check('email')
+    .trim()
     .not()
     .isEmpty()
     .withMessage("E mail is necessary")
@@ -253,6 +268,7 @@ router.post('/signupapi', [
       return true;
     }),
   check('password')
+    .trim()
     .not()
     .isEmpty()
     .withMessage("Password is necessary")
@@ -291,6 +307,7 @@ router.post('/signupapi', [
 
 router.post('/loginapi', [
   check('email')
+    .trim()
     .not()
     .isEmpty()
     .withMessage("E mail is necessary")
@@ -306,6 +323,7 @@ router.post('/loginapi', [
         throw new Error("Either email or password is wrong");
     }),
   check('password')
+    .trim()
     .not()
     .isEmpty()
     .withMessage("Password is necessary")
