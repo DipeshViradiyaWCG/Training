@@ -53,6 +53,14 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="exampleInputPassword2" class="form-label">Gender</label>
+                        <input type="text" name="gender" class="form-control" id="exampleInputPassword2">
+                        {{#if errs.gender}}
+                            <div class="form-text text-danger">{{errs.gender.[0]}}</div>
+                        {{/if}}
+                    </div>
+
+                    <div class="mb-3">
                         <label for="exampleInputPassword2" class="form-label">PAN card number</label>
                         <input type="text" name="pancard" class="form-control" id="exampleInputPassword2">
                         {{#if errs.pancard}}

@@ -1,12 +1,11 @@
 var express = require('express');
-const { check, validationResult } = require('express-validator');
+const { check, validationResult, param } = require('express-validator');
 var router = express.Router();
 
 const userModel = require("../models/user");
 
 
-
-/* GET home page. */
+// To show same page errors
 router.get('/', (req, res) => { res.render('index'); });
 
 router.post('/',[
@@ -16,15 +15,11 @@ router.post('/',[
   check('password').not().isEmpty().isLength({min : 5}).withMessage("Password is necessary and Should be 5 characters long")
 ] ,function(req, res, next) {
     const errors = validationResult(req).array();
-    // if(errors){
-    //   req.session.errors = errorsobj.errors;
-    //   // req.session.success = errors ? false : true;
-    // }
-    let success = errors.length > 0 ? false :true;
+    let success = errors.length > 0 ? false : true;
     res.render("index", {errors , success});
-    // console.log(errors);
 });
 
+// To show field specific error
 router.get('/bootstrap', (req, res) => { res.render('index2'); });
 
 router.post('/bootstrap', [
@@ -55,6 +50,11 @@ router.post('/bootstrap', [
     .withMessage("Should be 8 characters long")
     .matches('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})')
     .withMessage("Entered password's strength is too weak - {should contain Uppercase letter, lowercase letter, numerical values, special characters}"),
+  check('gender')
+    .notEmpty()
+    .withMessage("Gender is necessary")
+    .isIn(['Male', 'male','Female','female','other','Other','m','M', 'f','F'])
+    .withMessage("Use words like male , female, other"),
   check('number')
     .trim()
     .not()
@@ -63,8 +63,6 @@ router.post('/bootstrap', [
     .isMobilePhone()
     .matches('[6-9]{1}[0-9]{9}')
     .withMessage("Entered number does not match with official pattern of indian phone numbers"),
-    // .isLength({min : 10, max : 10})
-    // .withMessage("Indian mobile number contains exact 10 numbers"),
   check('pancard')
     .trim()
     .not()
@@ -101,12 +99,9 @@ router.post('/bootstrap', [
     .withMessage("GST number only contains alphabets and numbers")
     .matches('^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$')
     .withMessage("Entered GST number does not match with official pattern provided by IND gov."),
-
-
-], function (req, res) {
+] , function (req, res) {
   const errors1 = validationResult(req).array();
   let success = errors1.length > 0 ? false :true;
-  // console.log(errors1);
 
   let errs = {};
   for(let err of errors1){
@@ -119,12 +114,11 @@ router.post('/bootstrap', [
     }
   }
 
-  // console.log(errs);
-
   res.render("index2", {errs, success});
   
 });
 
+// To show custom validator errors
 router.get('/signup', (req, res) => { res.render('signup'); });
 
 router.post('/signup', [
@@ -164,7 +158,6 @@ router.post('/signup', [
 ],async function (req, res) {
   const errorsSignup = validationResult(req).array();
   let success = errorsSignup.length > 0 ? false :true;
-  console.log(errorsSignup);
 
   let errs = {};
   for(let err of errorsSignup){
@@ -185,6 +178,7 @@ router.post('/signup', [
   
 });
 
+// To show custom validator errors
 router.get('/login', (req, res) => { res.render('login'); });
 
 router.post('/login', [
@@ -223,7 +217,6 @@ router.post('/login', [
 ], function (req, res) {
   const errorsSignup = validationResult(req).array();
   let success = errorsSignup.length > 0 ? false :true;
-  // console.log(errors1);
 
   let errs = {};
   for(let err of errorsSignup){
@@ -236,12 +229,11 @@ router.post('/login', [
     }
   }
 
-  // console.log(errs);
-
   res.render("login", {errs, success});
-  
+
 });
 
+// APIs with custom validation - POST
 router.post('/signupapi', [
   check('name')
     .trim()
@@ -280,92 +272,69 @@ router.post('/signupapi', [
   const errorsSignup = validationResult(req).array();
   let success = errorsSignup.length > 0 ? false :true;
   console.log(errorsSignup);
-
-  let errs = {};
-  for(let err of errorsSignup){
-    if(errs[err.param])
-    {
-      errs[err.param].push(err.msg)
-    }else{
-      errs[err.param] = []
-      errs[err.param].push(err.msg)
-    }
-  }
-
+  
   if(success){
     await userModel.create(req.body);
-    res.json({msg : "Validated..."})
+    res.json({msg : "Validated..."}).send();
+  } else {
+    let errs = {};
+    for(let err of errorsSignup){
+      if(errs[err.param] == undefined)
+        errs[err.param] = []
+      errs[err.param].length < 1 && errs[err.param].push(err.msg)
+    }
+    res.json({errs}).send();
   }
-
-  // console.log(errs);
-  else
-    res.json({errs});
-  // res.render("signup", {errs, success});
-  
 });
 
-
-router.post('/loginapi', [
-  check('email')
+router.post('/loginapi/:email/:password', [
+  param('email')
     .trim()
     .not()
     .isEmpty()
     .withMessage("E mail is necessary")
     .isEmail()
     .withMessage("Email is invalid.")
-    .isLength({min : 10})
-    .withMessage("Email should be atleast 10 characters long")
+    // .isLength({min : 10})
+    // .withMessage("Email should be atleast 10 characters long")
     .custom(async (value, {req}) => {
       let userObj = await userModel.findOne({email : value}).lean();
       if(!userObj)
         throw new Error("Entered email account does not exists...");
-      if(userObj.password != req.body.password)
-        throw new Error("Either email or password is wrong");
     }),
-  check('password')
+  param('password')
     .trim()
     .not()
     .isEmpty()
     .withMessage("Password is necessary")
     .isLength({min : 8})
     .withMessage("Should be 8 characters long")
-    .matches('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})')
-    .withMessage("Entered password's strength is too weak - {should contain Uppercase letter, lowercase letter, numerical values, special characters}")
+    // .matches('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})')
+    // .withMessage("Entered password's strength is too weak - {should contain Uppercase letter, lowercase letter, numerical values, special characters}")
     .custom(async (value, {req}) => {
-      let userObj = await userModel.findOne({email : req.body.email}).lean();
-      if(!userObj)
-        throw new Error("Entered email account does not exists...");
+      let userObj = await userModel.findOne({email : req.params.email}).lean();
       if(userObj.password != value)
         throw new Error("Either email or password is wrong");
     })
 ], function (req, res) {
   const errorsSignup = validationResult(req).array();
   let success = errorsSignup.length > 0 ? false :true;
-  // console.log(errors1);
-
-  let errs = {};
-  for(let err of errorsSignup){
-    if(errs[err.param])
-    {
-      errs[err.param].push(err.msg)
-    }else{
-      errs[err.param] = []
-      errs[err.param].push(err.msg)
-    }
-  }
-
-  // console.log(errs);
   if(success){
-    res.json({msg : "Validated..."})
+    res.json({status : 0 ,msg : "Validated..."}).send()
+  } else {
+    let errs = {};
+    for(let err of errorsSignup){
+      if(errs[err.param] == undefined)
+        errs[err.param] = []
+      errs[err.param].length < 1 && errs[err.param].push(err.msg)
+    }
+    console.log(errs);
+    res.json({status : 1 ,errs});
   }
-
-  // console.log(errs);
-  else
-    res.json({errs});
-
-  // res.render("login", {errs, success});
-  
 });
+
+//API in front end
+router.get('/loginapitest', (req, res) => { res.render('logintest'); });
 
 
 module.exports = router;
