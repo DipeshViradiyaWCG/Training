@@ -1,7 +1,12 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -9,43 +14,120 @@
 <body>
     {{!-- Hello --}}
     You Are => {{current}}
-    <br>
+
+    <div class="row justify-content-evenly">
+        <div class="col-3">
+            <br>
+            ONLINE USERS
+            <br>
+            <ul id="onlineusers">
+
+            </ul>   
+        </div>
+        <div class="col-6">
+            <div class="message-box">
+                {{!-- <ul id="messages">
+
+                </ul>
+
+                <form action="" method="post" id="form">
+                    <input type="text" name="message" id="message" />
+                    <input type="submit" value="Send">
+                </form> --}}
+            </div>
+        </div>
+    </div>
+    <a href="/logout" class="btn btn-danger">Logout</a>
+    {{!-- <br>
     ONLINE USERS
     <br>
     <ul id="onlineusers">
 
     </ul>
-    <br><br><br>
-    <ul id="messages">
+    <br><br><br> --}}
+    
 
-    </ul>
-
-    <form action="" method="post" id="form">
-        <input type="text" name="message" id="message" />
-        <input type="submit" value="Send">
-    </form>
-
-    <a href="/logout">logout</a>
+    {{!-- <a href="/logout">logout</a> --}}
 
 
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-    {{!-- <script src="/socket.io/socket.io.js"></script> --}}
-    <script src="https://cdn.socket.io/4.2.0/socket.io.min.js" integrity="sha384-PiBR5S00EtOj2Lto9Uu81cmoyZqR57XcOna1oAuVuIEjzj0wpqDVfD0JA9eXlRsj" crossorigin="anonymous"></script>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    {{!-- <script src="https://cdn.socket.io/4.2.0/socket.io.min.js" integrity="sha384-PiBR5S00EtOj2Lto9Uu81cmoyZqR57XcOna1oAuVuIEjzj0wpqDVfD0JA9eXlRsj" crossorigin="anonymous"></script> --}}
     <script>
-    var socket = io();
-    var formobj = document.getElementById("form");
+
+    //let userSession = '{{{session}}}';
+
+
+    var socket = io.connect('http://localhost:3051', {query : "userSession={{{session}}}", secure: true,    rejectUnauthorized: false, transports : ['websocket']});
+
+    //var formobj = document.getElementById("form");
     var msgObj = document.getElementById("message");
 
-    formobj.addEventListener('submit', function(e) {
-        e.preventDefault();
-        if (msgObj.value) {
-            socket.emit('chat message', msgObj.value);  
+    //if(formobj){
+    //    formobj.addEventListener('submit', function(e) {
+    //        e.preventDefault();
+    //        if (msgObj.value) {
+    //            socket.emit('chatMessage', msgObj.value, msgObj.className);  
+//
+    //            let msgelement = document.createElement("li");
+    //            msgelement.innerHTML = `<p style="color : blue">------------------------------------------${msgObj.value}</p>`;
+    //            document.getElementById("messages").appendChild(msgelement);
+    //            msgObj.value = '';
+    //        }
+    //    });
+    //}
 
-            let msgelement = document.createElement("li");
-            msgelement.innerHTML = `<p style="color : blue">------------------------------------------${msgObj.value}</p>`;
-            document.getElementById("messages").appendChild(msgelement);
-            msgObj.value = '';
+    function startChat(ele){
+        //console.log("startChat");
+        //console.log(ele.innerHTML);
+        document.getElementsByClassName("message-box")[0].innerHTML = `
+                <h3>${ele.innerHTML}</h3>
+                <ul id="messages">
+
+                </ul>
+                    <input type="text" name="message" id="message" data-receiver="${ele.className.split("-")[1]}" />
+                    <button id="send" class="btn-primary" onclick="sendMessage()">Send</button>`
+                    ;
+    }
+
+    function sendMessage(){
+        let msg = jQuery("#message").val();
+        console.log(msg)
+        //let receiverId = jQuery("#message").attr("class");
+        let receiverId = jQuery('#message').data('receiver');
+        console.log(receiverId);
+        if (msg) {
+            socket.emit('chatMessage', msg, receiverId);  
+            console.log("chatMessage emit");
+
+            jQuery("#messages").append(`<p style="color : blue">------------------------------------------${msg}</p>`);
+            jQuery("#message").val("");
         }
+    }
+
+    $.noConflict();
+    jQuery( document ).ready(function() {
+        //jQuery("#send").on("click", function() {
+        //    let msg = jQuery("#message").val();
+        //    console.log(msg)
+        //    //let receiverId = jQuery("#message").attr("class");
+        //    let receiverId = jQuery('#message').data('receiver');
+        //    console.log(receiverId);
+        //    if (msg) {
+        //        socket.emit('chatMessage', msg, receiverId);  
+//
+        //        jQuery("#messages").append(`<p style="color : blue">------------------------------------------${msgObj.value}</p>`);
+        //        jQuery("#message").val("");
+        //        //let msgelement = document.createElement("li");
+        //        //msgelement.innerHTML = `<p style="color : blue">------------------------------------------${msgObj.value}</p>`;
+        //        //document.getElementById("messages").appendChild(msgelement);
+        //        //msgObj.value = '';
+        //    }
+        //});
     });
 
     //socket.on("show chat", (msgmodelobj) => {
@@ -57,18 +139,23 @@
     //    }
     //})
 
-    socket.on("broadcast chat",(msgdata) => {
-        let msgelement = document.createElement("li")
-        msgelement.innerHTML = `<p>${msgdata}</p>`;
-        document.getElementById("messages").appendChild(msgelement);
+    socket.on("broadcastChat",(msgdata, senderId) => {
+        console.log("Message received")
+        jQuery("#messages").append(`<p>${msgdata}</p>`);
+        //let msgelement = document.createElement("li")
+        //msgelement.innerHTML = `<p>${msgdata}</p>`;
+        //document.getElementById("messages").appendChild(msgelement);
     });
 
-    socket.on("show online", (arr) => {
-        document.getElementById("onlineusers").innerHTML = "";
+    socket.on("showOnline", (arr) => {
+        //document.getElementById("onlineusers").innerHTML = "";
+        jQuery("#onlineusers").html("");
         for(let i = 0; i < arr.length; i++){
-            let temp = document.createElement("li");
-            temp.innerHTML = `${arr[i].username}`;
-            document.getElementById("onlineusers").appendChild(temp);
+            console.log(arr[i].username);
+            jQuery("#onlineusers").append(`<li><p class="online userid-${arr[i]._id}" onclick="startChat(this)">${arr[i].username}</p></li>`);
+            //let temp = document.createElement("li");
+            //temp.innerHTML = `<h6 class="userid-${arr[i]._id} online" onclick="startChat(${arr[i]._id})>${arr[i].username}</h6>`;
+            //document.getElementById("onlineusers").appendChild(temp);
         }
     });
 

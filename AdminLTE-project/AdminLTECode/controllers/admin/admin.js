@@ -1,8 +1,23 @@
 const adminModel = require("../../models/admin");
+const { check, validationResult, param } = require('express-validator');
 
 const nodemailer = require('nodemailer');
 
 exports.adminSignupPost = function (req, res, next) {
+    const errorsSignup = validationResult(req).array();
+    let success = errorsSignup.length > 0 ? false :true;
+
+    let errs = {};
+    for(let err of errorsSignup){
+      if(errs[err.param])
+      {
+        errs[err.param].push(err.msg)
+      }else{
+        errs[err.param] = []
+        errs[err.param].push(err.msg)
+      }
+    }
+
     new adminModel({
         name : req.body.name,
         email : req.body.email,
@@ -13,25 +28,52 @@ exports.adminSignupPost = function (req, res, next) {
             throw err;
         else{
             req.session.adminId = data._id;
-            res.redirect("/admin/dashboard");
+            if(success)
+                res.redirect("/admin/dashboard");
+            else
+                res.render("admin/account/signup", {layout: 'loginSignup.hbs' , errs});
         }
     });
 };
 
 exports.adminLoginPost = function (req, res, next) {
-    var a_email = req.body.email;
-    var a_password = req.body.password;
 
-    adminModel.findOne({email : a_email}).then((admin) => {
-        if((!admin) || (admin.password != a_password)) 
-            res.redirect("/admin/login");
-        else {
-            req.session.adminId = admin._id;
-            res.redirect("/admin/dashboard");
-        }
-    }).catch((err) => {
-        throw err;
-    });
+    const errorsLogin = validationResult(req).array();
+    let success = errorsLogin.length > 0 ? false :true;
+
+    let errs = {};
+    for(let err of errorsLogin){
+      if(errs[err.param])
+      {
+        errs[err.param].push(err.msg)
+      }else{
+        errs[err.param] = []
+        errs[err.param].push(err.msg)
+      }
+    }
+
+    if(success)
+        res.redirect("/admin/dashboard");
+    else
+        res.render("admin/account/login", {layout: 'loginSignup.hbs' , errs});
+
+
+    // var a_email = req.body.email;
+    // var a_password = req.body.password;
+
+    // adminModel.findOne({email : a_email}).then((admin) => {
+    //     if((!admin) || (admin.password != a_password)) 
+    //         res.redirect("/admin/login");
+    //     else {
+    //         req.session.adminId = admin._id;
+    //         if(success)
+    //             res.redirect("/admin/dashboard");
+    //         else
+    //             res.render("admin/account/login", {layout: 'loginSignup.hbs' , errs});
+    //     }
+    // }).catch((err) => {
+    //     throw err;
+    // });
 };
 
 exports.getDisplayAdmins = async function (req, res, next) {

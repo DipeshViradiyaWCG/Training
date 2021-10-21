@@ -17,6 +17,9 @@
             </div>
           </div>
         </div>
+          {{#if errs.email}}
+            <div class="form-text text-danger">{{errs.email.[0]}}</div>
+          {{/if}}
         <div class="input-group mb-3">
           <input type="password" class="form-control" placeholder="Password" name="password">
           <div class="input-group-append">
@@ -25,6 +28,9 @@
             </div>
           </div>
         </div>
+          {{#if errs.password}}
+            <div class="form-text text-danger">{{errs.password.[0]}}</div>
+          {{/if}}
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">

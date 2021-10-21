@@ -28,12 +28,11 @@
       <form action="" method="post">
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Name" name="name">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              {{!-- <span class="fas fa-envelope"></span> --}}
-            </div>
-          </div>
+          
         </div>
+        {{#if errs.name}}
+          <div class="form-text text-danger">{{errs.name.[0]}}</div>
+        {{/if}}
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Username" name="username">
           <div class="input-group-append">
@@ -42,6 +41,9 @@
             </div>
           </div>
         </div>
+          {{#if errs.username}}
+            <div class="form-text text-danger">{{errs.username.[0]}}</div>
+          {{/if}}
         <div class="input-group mb-3">
           <input type="email" class="form-control" placeholder="Email" name="email">
           <div class="input-group-append">
@@ -50,6 +52,9 @@
             </div>
           </div>
         </div>
+          {{#if errs.email}}
+            <div class="form-text text-danger">{{errs.email.[0]}}</div>
+          {{/if}}
         <div class="input-group mb-3">
           <input type="password" class="form-control" placeholder="Password" name="password">
           <div class="input-group-append">
@@ -58,6 +63,9 @@
             </div>
           </div>
         </div>
+          {{#if errs.password}}
+            <div class="form-text text-danger">{{errs.password.[0]}}</div>
+          {{/if}}
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
