@@ -50,9 +50,10 @@ exports.getEditProduct = async function (req, res, next) {
         }
     }).lean();
     let subcategories = await subcategoryModel.find().lean();
+    // console.log("selected sub ============> ",products._subcategory.subcategoryname)
     // console.log(products);
     // console.log(subcategories);
-    res.render("admin/product/product/edit-product", {products, subcategories});
+    res.render("admin/product/product/edit-product", {products, subcategories, selectedSubcategory : products._subcategory.subcategoryname});
 };
 
 exports.postEditProduct = async function (req, res, next) {

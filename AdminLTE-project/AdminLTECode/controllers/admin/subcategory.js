@@ -53,7 +53,8 @@ exports.getEditSubCategory = async function (req, res, next) {
         res.render("admin/product/subcategory/edit-subcategory", {
             title: "Edit Sub Category",
             subcategoryname : subcategoryobj.subcategoryname,
-            categories
+            categories,
+            selectedCategory : subcategoryobj._category.categoryname
         });
     } catch (error) {
         next(err);

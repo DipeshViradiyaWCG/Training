@@ -36,7 +36,7 @@ exports.adminSignupPost = function (req, res, next) {
     });
 };
 
-exports.adminLoginPost = function (req, res, next) {
+exports.adminLoginPost = async function (req, res, next) {
 
     const errorsLogin = validationResult(req).array();
     let success = errorsLogin.length > 0 ? false :true;
@@ -45,15 +45,22 @@ exports.adminLoginPost = function (req, res, next) {
     for(let err of errorsLogin){
       if(errs[err.param])
       {
-        errs[err.param].push(err.msg)
-      }else{
-        errs[err.param] = []
-        errs[err.param].push(err.msg)
-      }
+          errs[err.param].push(err.msg)
+        }else{
+            errs[err.param] = []
+            errs[err.param].push(err.msg)
+        }
     }
+    
+    var a_email = req.body.email;
 
-    if(success)
+    let admin = await adminModel.findOne({email : a_email});
+
+    if(success){
+        req.session.adminId = admin._id;
         res.redirect("/admin/dashboard");
+
+    }
     else
         res.render("admin/account/login", {layout: 'loginSignup.hbs' , errs});
 

@@ -74,6 +74,8 @@ app.get("/login", async (req, res, next) => {
   res.render("login");
 });
 
+
+
 app.post("/login", async (req, res, next) => {
   let uObj = await userModel.findOne({username : req.body.username}).lean();
   req.session.user = uObj._id;

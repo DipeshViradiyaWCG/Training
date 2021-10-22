@@ -14,17 +14,23 @@
 <body>
     {{!-- Hello --}}
     You Are => {{current}}
-
-    <div class="row justify-content-evenly">
+    <div class="row">
+        <div class="col-2"></div>
         <div class="col-3">
             <br>
             ONLINE USERS
             <br>
             <ul id="onlineusers">
 
+            </ul>  
+            <br>
+            OFFLINE USERS
+            <br>
+            <ul id="offlineusers">
+
             </ul>   
         </div>
-        <div class="col-6">
+        <div class="col-4" >
             <div class="message-box">
                 {{!-- <ul id="messages">
 
@@ -36,6 +42,7 @@
                 </form> --}}
             </div>
         </div>
+        <div class="col-3"></div>
     </div>
     <a href="/logout" class="btn btn-danger">Logout</a>
     {{!-- <br>
@@ -59,7 +66,7 @@
     {{!-- <script src="https://cdn.socket.io/4.2.0/socket.io.min.js" integrity="sha384-PiBR5S00EtOj2Lto9Uu81cmoyZqR57XcOna1oAuVuIEjzj0wpqDVfD0JA9eXlRsj" crossorigin="anonymous"></script> --}}
     <script>
 
-    //let userSession = '{{{session}}}';
+    let userSession = '{{{session}}}';
 
 
     var socket = io.connect('http://localhost:3051', {query : "userSession={{{session}}}", secure: true,    rejectUnauthorized: false, transports : ['websocket']});
@@ -84,15 +91,31 @@
     function startChat(ele){
         //console.log("startChat");
         //console.log(ele.innerHTML);
-        document.getElementsByClassName("message-box")[0].innerHTML = `
+        jQuery(".message-box").html(`
                 <h3>${ele.innerHTML}</h3>
-                <ul id="messages">
+                
+                <div style="overflow-x:auto; height:500px;" id="messages-list">
+                    <div id="messages">
 
-                </ul>
+                    </div>
+                </div>
                     <input type="text" name="message" id="message" data-receiver="${ele.className.split("-")[1]}" />
-                    <button id="send" class="btn-primary" onclick="sendMessage()">Send</button>`
-                    ;
+                    <button id="send" class="btn-primary" onclick="sendMessage()">Send</button>`);
+        socket.emit("showHistoryMessagesRequest", ele.className.split("-")[1]);
+        //document.getElementsByClassName("message-box")[0].innerHTML = `
+        //        <h3>${ele.innerHTML}</h3>
+        //        <ul id="messages">
+//
+        //        </ul>
+        //            <input type="text" name="message" id="message" data-receiver="${ele.className.split("-")[1]}" />
+        //            <button id="send" class="btn-primary" onclick="sendMessage()">Send</button>`
+        //            ;
+        
     }
+
+//    function scrollAuto(){
+//        jQuery(".messages-list").animate({ scrollTop: $('.messages-list').prop("scrollHeight") }, 1000);
+//    }
 
     function sendMessage(){
         let msg = jQuery("#message").val();
@@ -104,8 +127,9 @@
             socket.emit('chatMessage', msg, receiverId);  
             console.log("chatMessage emit");
 
-            jQuery("#messages").append(`<p style="color : blue">------------------------------------------${msg}</p>`);
+            jQuery("#messages").append(`<p style="color : blue; text-align:right; margin-right:15px">${msg}</p>`);
             jQuery("#message").val("");
+
         }
     }
 
@@ -152,11 +176,41 @@
         jQuery("#onlineusers").html("");
         for(let i = 0; i < arr.length; i++){
             console.log(arr[i].username);
-            jQuery("#onlineusers").append(`<li><p class="online userid-${arr[i]._id}" onclick="startChat(this)">${arr[i].username}</p></li>`);
+            jQuery("#onlineusers").append(`<li><p class="online userid-${arr[i]._id}" style="color: green;" onclick="startChat(this)">${arr[i].username}</p></li>`);
             //let temp = document.createElement("li");
             //temp.innerHTML = `<h6 class="userid-${arr[i]._id} online" onclick="startChat(${arr[i]._id})>${arr[i].username}</h6>`;
             //document.getElementById("onlineusers").appendChild(temp);
         }
+    });
+
+    socket.on("showOffline", (arr) => {
+        //document.getElementById("onlineusers").innerHTML = "";
+        jQuery("#offlineusers").html("");
+        for(let i = 0; i < arr.length; i++){
+            console.log(arr[i].username);
+            jQuery("#offlineusers").append(`<li><p class="online userid-${arr[i]._id}" style="color: red;" onclick="startChat(this)">${arr[i].username}</p></li>`);
+            //let temp = document.createElement("li");
+            //temp.innerHTML = `<h6 class="userid-${arr[i]._id} online" onclick="startChat(${arr[i]._id})>${arr[i].username}</h6>`;
+            //document.getElementById("onlineusers").appendChild(temp);
+        }
+    });
+
+    socket.on("showHistoryMessagesResponse", (responseMessages) => {
+        console.log("msgs received");
+        console.log(responseMessages);
+        jQuery("#messages").html("");
+        for(let messageIndex = 0; messageIndex < responseMessages.length; messageIndex++){
+            if(responseMessages[messageIndex]._sender == userSession){
+                jQuery("#messages").append(`<p style="color : blue; text-align:right; margin-right:15px;">${responseMessages[messageIndex].msgdata}</p>`);
+
+            } else {
+                jQuery("#messages").append(`<p>${responseMessages[messageIndex].msgdata}</p>`);
+                
+
+
+            }
+        }
+
     });
 
 

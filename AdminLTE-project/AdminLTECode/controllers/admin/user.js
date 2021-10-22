@@ -65,7 +65,7 @@ exports.getEditUser = async function (req, res, next) {
     let areas = await areaModel.find().lean();
     // console.log(products);
     // console.log(subcategories);
-    res.render("admin/user/edit-user", {users, areas});
+    res.render("admin/user/edit-user", {users, areas, selectedArea : users._area.areaname});
 };
 
 exports.postEditUser = async function (req, res, next) {

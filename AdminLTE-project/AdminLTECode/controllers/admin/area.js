@@ -43,7 +43,7 @@ exports.getEditArea = async function (req, res, next) {
     let cities = await cityModel.find().lean();
     // console.log(products);
     // console.log(subcategories);
-    res.render("admin/product/area/edit-area", {areas, cities});
+    res.render("admin/product/area/edit-area", {areas, cities, selectedCity : areas._city.cityname});
 };
 
 exports.postEditArea = async function (req, res, next) {

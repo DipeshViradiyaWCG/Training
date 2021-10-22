@@ -40,10 +40,12 @@ exports.getEditCity = async function (req, res, next) {
 
 
         // console.log(subcategoryObject);
+        console.log("selected state ==> ", cityobj);
         res.render("admin/product/city/edit-city", {
             title: "Edit City",
             cityname : cityobj.cityname,
-            states
+            states,
+            selectedState : cityobj._state.statename
         });
     } catch (error) {
         next(err);
