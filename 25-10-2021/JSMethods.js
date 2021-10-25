@@ -157,3 +157,14 @@ console.log("math.floor(15.1, 15.5, 15.9, -15.1, -15.5, -15.9) ", Math.floor(15.
 console.log("math.round(15.1, 15.5, 15.9, -15.1, -15.5, -15.9) ", Math.round(15.1), Math.round(15.5), Math.round(15.9), Math.round(-15.1), Math.round(-15.5), Math.round(-15.9));
 // math.round(15.1, 15.5, 15.9, -15.1, -15.5, -15.9)  15 16 16 -15 -15 -16
 
+console.log("Date");
+console.log(new Date().toString());
+console.log(new Date().getDate());
+console.log(new Date().getMonth() + 1);
+console.log(new Date().getFullYear());
+console.log(new Date().getHours() + 1);
+console.log(new Date().getMinutes() + 1);
+console.log(new Date().getSeconds() + 1);
+
+console.log(new Date().getDay() + 1, "1 - SUNDAY, 2 - MONDAY ...");
+
