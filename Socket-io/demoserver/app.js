@@ -5,11 +5,11 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// var indexRouter = require('./routes/index');
+// var usersRouter = require('./routes/users');
 
-const userModel  = require("./models/user");
-const msgModel = require("./models/message");
+const userModel  = require("./models/users");
+const msgModel = require("./models/messages");
 
 var mongoose = require('mongoose');
 
@@ -44,82 +44,67 @@ app.use(cors());
 const session = require('express-session');
 app.use(session({secret : 'keyboard_cat', resave : true, saveUninitialized : true,  cookie : {maxAge : 60 * 100 * 1000, httpOnly : true}}));//100 mins
 
-
-
-
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// app.use('/', indexRouter);
+// app.use('/users', usersRouter);
 
 global.connections = {};
 
+//Connection to server
 io.on('connection', async (socket) => {
-  //   console.log("session demo server");
-  //   console.log(socket.request._query['userSession']);
-  let currentUserId = socket.request._query['userSession'];
-  // console.log(req.session.user);
-  let userObj = await userModel.findByIdAndUpdate(  currentUserId    , {socketId : socket.id}); 
-  console.log("A user is connected...demo server");
-  console.log(socket.id);
-
-  connections[currentUserId] = socket.id;
-
-  console.log("=============");
-  console.log(connections);
-
-
-  
-  let onlineUsers = await userModel.find({ socketId: { $ne: null } }).lean();
-  // console.log("online users", onlineUsers);
-  socket.emit('showOnline', onlineUsers);
-  socket.broadcast.emit('showOnline', onlineUsers);
-  let offlineUsers = await userModel.find({ socketId: { $eq: null } }).lean();
-  socket.emit('showOffline', offlineUsers);
-  socket.broadcast.emit('showOffline', offlineUsers);
-
+  let currentUserId = await socket.request._query['userSession'];
+  try {
+    let userObj = await userModel.findByIdAndUpdate(  currentUserId    , {socketId : socket.id}); 
+    console.log("A user is connected...demo server");
+    console.log(socket.id);
+    connections[currentUserId] = socket.id;
+    console.log("=============");
+    console.log(connections);
+    let onlineUsers = await userModel.find({ socketId: { $ne: null } }).lean();
+    socket.emit('showOnline', onlineUsers);
+    socket.broadcast.emit('showOnline', onlineUsers);
+    let offlineUsers = await userModel.find({ socketId: { $eq: null } }).lean();
+    socket.emit('showOffline', offlineUsers);
+    socket.broadcast.emit('showOffline', offlineUsers);
+  } catch (error) {
+    console.log(error);
+  }
 
   socket.on("chatMessage", async (msgdata, receiverid) => {
-    let sender = await userModel.findById(currentUserId).lean();
-    let msgObj = await msgModel.create({
-      _sender : sender._id,
-      _receiver : receiverid,
-      msgdata : msgdata
-    });
+    try {
+      let sender = await userModel.findById(currentUserId).lean();
+      let msgObj = await msgModel.create({
+        _sender : sender._id,
+        _receiver : receiverid,
+        msgdata : msgdata
+      });
+      console.log("id--------------------------------------");
+      console.log(receiverid);
+      socket.broadcast.to(connections[receiverid]).emit("broadcastChat", msgdata, sender._id);
+    } catch (error) {
+      console.log(error);
+    }
 
-    console.log("id--------------------------------------");
-    console.log(receiverid);
-    socket.broadcast.to(connections[receiverid]).emit("broadcastChat", msgdata, sender._id);
-    // socket.broadcast.emit("broadcast chat", msgdata);
   });
 
   socket.on("showHistoryMessagesRequest", async (receiverId) => {
-    // let sentMessages = await msgModel.find({_sender : currentUserId, _receiver : receiverId}).lean();
-    // let receivedMessages = await msgModel.find({_sender : receiverId, _receiver : currentUserId}).lean();
-
     let responseMessages = await msgModel.find({$or:[{_sender : currentUserId, _receiver : receiverId},{_sender : receiverId, _receiver : currentUserId}]}).lean();
-    // console.log("messages=======>");
-    // console.log(responseMessages);;
-
     socket.emit("showHistoryMessagesResponse", responseMessages);
-    // console.log(connections);
-    // console.log("msgs sent to ---> ", connections[currentUserId]);
-    // console.log("msgs should go to --->", socket.id);
-    
   });
-
 
   socket.on('disconnect', async () => {
-    console.log('user disconnected... demo server');
-    console.log(socket.id);
-    await userModel.findOneAndUpdate({socketId : socket.id}, {socketId : null});
-    let offlineUsers = await userModel.find({ socketId: { $eq: null } }).lean();
-    socket.broadcast.emit('showOffline', offlineUsers);
-    let onlineUsers = await userModel.find({ socketId: { $ne: null } }).lean();
-    socket.broadcast.emit('showOnline', onlineUsers);
+    try {
+      console.log('user disconnected... demo server');
+      console.log(socket.id);
+      await userModel.findOneAndUpdate({socketId : socket.id}, {socketId : null});
+      let offlineUsers = await userModel.find({ socketId: { $eq: null } }).lean();
+      socket.broadcast.emit('showOffline', offlineUsers);
+      let onlineUsers = await userModel.find({ socketId: { $ne: null } }).lean();
+      socket.broadcast.emit('showOnline', onlineUsers);
+    } catch (error) {
+      console.log(error);
+    }
   });
 });
-
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
