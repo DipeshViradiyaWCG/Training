@@ -72,9 +72,13 @@ router.post('/multi', upload.array("file1"), function(req, res, next) {
   })
   file_model.insertMany(files_name_array).then((files)=>{
     res.redirect("/multi")
-
   })
+});
 
+router.get("/multiapi", (req, res, next) => res.render("ajax"));
+
+router.post("/multiapi", async (req,res,next) => {
+  console.log(req);
 });
 
 module.exports = router;

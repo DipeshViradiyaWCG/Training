@@ -1,0 +1,29 @@
+<form enctype="multipart/form-data" id="formular">
+    <input type="file" name="file1" id="file1" multiple>
+    <br><br>
+    <input type="submit" value="Upload">
+</form>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+    $().ready(function(){
+        $("#formular").submit(function (e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        console.log(formData)
+            $.ajax({
+                type: "POST",
+                url: "/multiapi",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(r){
+                    console.log("result",r)
+                },
+                error: function (e) {
+                    console.log("some error", e);
+                }
+            });
+        });
+    });
+
+</script>
