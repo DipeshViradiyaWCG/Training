@@ -2,6 +2,8 @@ var express = require('express');
 const { check, validationResult, param } = require('express-validator');
 var router = express.Router();
 
+const bcrypt = require("bcryptjs");
+
 const userModel = require("../models/user");
 
 
@@ -274,6 +276,8 @@ router.post('/signupapi', [
   console.log(errorsSignup);
   
   if(success){
+    var salt = bcrypt.genSaltSync(10);
+    req.body.password = await bcrypt.hashSync(req.body.password, salt);
     await userModel.create(req.body);
     res.json({msg : "Validated..."}).send();
   } else {
@@ -313,7 +317,7 @@ router.post('/loginapi/:email/:password', [
     // .withMessage("Entered password's strength is too weak - {should contain Uppercase letter, lowercase letter, numerical values, special characters}")
     .custom(async (value, {req}) => {
       let userObj = await userModel.findOne({email : req.params.email}).lean();
-      if(userObj.password != value)
+      if(!bcrypt.compareSync(value, userObj.password))
         throw new Error("Either email or password is wrong");
     })
 ], function (req, res) {
