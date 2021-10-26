@@ -1,0 +1,37 @@
+<h2>API data</h2>
+
+<table border="5px">
+    <tr>
+        <td>
+            User name
+        </td>
+        <td>
+            Mobile number
+        </td>
+        <td>
+            Address
+        </td>
+    </tr>
+    {{#each users}}
+    <tr>
+        <td>
+            {{u_name}}
+        </td>
+        <td>
+            {{u_address}}
+        </td>
+        <td>
+            {{u_monumber}}
+        </td>
+    </tr>
+    {{/each}}
+</table>
+<br>
+<br>
+<br>
+<h2>Third party API - cat facts on every refresh</h2>
+<h3>{{fact}}</h3>
+
+
+
+
