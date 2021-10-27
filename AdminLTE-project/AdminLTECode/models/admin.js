@@ -6,7 +6,6 @@ var adminSchema = new Schema({
     email : String,
     username : String,
     password : String
-
 });
 
 module.exports = mongoose.model("MiniPAdmin", adminSchema);

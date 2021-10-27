@@ -8,10 +8,8 @@ const hbs = require("express-handlebars");
 const session = require('express-session');
 var fileUpload = require('express-fileupload');
 
-// const isLogin = require("./controllers/admin/middleware/isLogin");
-
-
-const admincategoryRouter = require("./routes/admin/category");
+// routers
+const adminCategoryRouter = require("./routes/admin/category");
 const adminSubcategoryRouter = require("./routes/admin/subcategory");
 const productRouter = require("./routes/admin/product");
 const stateRouter = require("./routes/admin/state");
@@ -19,10 +17,8 @@ const cityRouter = require("./routes/admin/city");
 const areaRouter = require("./routes/admin/area");
 const userRouter = require("./routes/admin/user");
 
-
+// DB Code
 var mongoose = require('mongoose');
-
-
 mongoose.connect(
   // "localhost:27017/crud-multiple",
   "mongodb://crud-multiple:crud-multiple@localhost:27017/crud-multiple").then(
@@ -56,14 +52,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+// session
 app.use(session({secret : 'keyboard_cat', resave : true, saveUninitialized : true,  cookie : {maxAge : 600000, httpOnly : true}}));
+
+// file Upload
 app.use(fileUpload());
 
-
+// routes
 app.use("/admin", adminRouter);
-//middleware
-// app.use(isLogin());
-app.use("/admin/category", admincategoryRouter);  
+app.use("/admin/category", adminCategoryRouter);  
 app.use("/admin/subcategory", adminSubcategoryRouter);
 app.use("/admin/product", productRouter);
 app.use("/admin/state", stateRouter);

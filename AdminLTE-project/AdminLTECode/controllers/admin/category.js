@@ -1,28 +1,37 @@
 const categoryModel = require("../../models/category");
 
+const showError = require("../../utilities/showError");
+
+// Render add category form
 exports.getAddCategory = function (req, res, next) {
   res.render("admin/product/category/add-category", { title: "Add Category" });
 };
 
+// Add category data in db
 exports.postAddCategory = async function (req, res, next) {
   const { categoryname } = req.body;
   try {
-    let categoryobj = await categoryModel.create({ categoryname });
+    await categoryModel.create({ categoryname });
     res.redirect("/admin/category/add");
   } catch (error) {
-    next(error);
+    showError(error);
   }
 };
 
+// Get and render category data 
 exports.getDisplayCategory = async function (req, res, next) {
-  let categories = await categoryModel.find().lean();
-
-  res.render("admin/product/category/display-category", {
-    title: "Display Category",
-    categories,
-  });
+  try {
+    let categories = await categoryModel.find().lean();
+    res.render("admin/product/category/display-category", {
+      title: "Display Category",
+      categories,
+    });    
+  } catch (error) {
+    showError(error);
+  }
 };
 
+// Render edit category form
 exports.getEditCategory = async function (req, res, next) {
   try {
     const categoryObject = await categoryModel
@@ -34,25 +43,27 @@ exports.getEditCategory = async function (req, res, next) {
       categoryname: categoryObject.categoryname,
     });
   } catch (error) {
-    next(err);
+    showError(error);
   }
 };
 
+// Edit user category in db
 exports.postEditCategory = async function (req, res, next) {
   const { categoryname } = req.body;
   try {
     await categoryModel.findByIdAndUpdate(req.params.id, { categoryname });
     res.redirect("/admin/category/display");
   } catch (error) {
-    next(error);
+    showError(error);
   }
 };
 
+// Delete category data in db
 exports.getDeleteCategory = async function (req, res, next) {
   try {
     await categoryModel.findByIdAndDelete(req.params.id);
     res.redirect("/admin/category/display");
   } catch (error) {
-    next(error);
+    showError(error);
   }
 };
