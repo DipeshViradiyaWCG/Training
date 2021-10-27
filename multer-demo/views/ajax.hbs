@@ -1,29 +1,70 @@
-<form enctype="multipart/form-data" id="formular">
-    <input type="file" name="file1" id="file1" multiple>
-    <br><br>
-    <input type="submit" value="Upload">
-</form>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script>
-    $().ready(function(){
-        $("#formular").submit(function (e) {
-        e.preventDefault();
-        var formData = new FormData(this);
-        console.log(formData)
-            $.ajax({
-                type: "POST",
-                url: "/multiapi",
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function(r){
-                    console.log("result",r)
-                },
-                error: function (e) {
-                    console.log("some error", e);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #loader {
+                border: 12px solid #f3f3f3;
+                border-radius: 50%;
+                border-top: 12px solid #444444;
+                width: 70px;
+                height: 70px;
+                animation: spin 1s linear infinite;
+            }
+            
+            @keyframes spin {
+                100% {
+                    transform: rotate(360deg);
                 }
+            }
+    </style>
+</head>
+<body>
+    <form enctype="multipart/form-data" id="form">
+        <input type="file" name="fileMultiple" id="fileMultiple" multiple>
+        <br><br>
+        <input type="submit" value="Upload">
+    </form>
+    <br>
+    <span id="status"></span><div id="loader" hidden></div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $().ready(function(){
+            $("#form").submit(function (e) {
+                e.preventDefault();
+
+                $("#status").html("Uploading...");
+                $("#loader").show();
+                let fd =  new FormData();
+                for(let i = 0; i < $("#fileMultiple")[0].files.length; ++i){
+                    fd.append("fileMultiple", $("#fileMultiple")[0].files[i]);
+                }
+
+                setTimeout(() => {
+                    $.ajax({
+                        type: "POST",
+                        url: "/multiapi",
+                        processData: false,
+                        contentType: false,
+                        data : fd,
+                        success: function(res){
+                            $("#status").html(res);
+                            $("#loader").hide();
+                        },
+                        error: function (err) {
+                            console.log(err);
+                            $("#status").html("An Error was occured in uploading...");
+                        }
+                    });    
+                } ,3000);
+
             });
         });
-    });
 
-</script>
+    </script>
+    
+</body>
+</html>

@@ -75,10 +75,28 @@ router.post('/multi', upload.array("file1"), function(req, res, next) {
   })
 });
 
+
+
+
+
+
 router.get("/multiapi", (req, res, next) => res.render("ajax"));
 
-router.post("/multiapi", async (req,res,next) => {
-  console.log(req);
+router.post("/multiapi", upload.array("fileMultiple"), async (req,res,next) => {
+
+  let files_name_array = req.files.map((file)=>{
+    return {f_name : file.filename}
+  })
+
+  try {
+    await file_model.insertMany(files_name_array);
+    res.send("Uploaded...");
+    
+  } catch (error) {
+    res.send(error);
+  }
+  
+  
 });
 
 module.exports = router;
