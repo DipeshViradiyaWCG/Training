@@ -95,8 +95,18 @@ router.post("/multiapi", upload.array("fileMultiple"), async (req,res,next) => {
   } catch (error) {
     res.send(error);
   }
-  
-  
+});
+
+router.get("/event", (req, res, next) => {
+  res.render("event");
+});
+
+const { getClientIp } = require('@supercharge/request-ip')
+
+router.get("/display",async function(req,res,next){
+  console.log("CALLED");
+  console.log(getClientIp(req));
+  return res.json();
 });
 
 module.exports = router;
