@@ -3,6 +3,7 @@ var router = express.Router();
 
 //DB model
 var UserModel = require("../models/user_model");
+let mongoPracticeModel = require("../models/playground");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -83,6 +84,54 @@ router.post('/edit/:id', function(req, res, next) {
   //     res.redirect('/');
   //   }
   // }).lean();
+});
+
+router.get("/testschema", async () => {
+  let obj1 = {
+    name : "Dipesh",
+    age : 21,
+    // mixDataObject :,
+    mixDataObject : [
+        {
+          height : 170,
+          games : ["cricket", "football", { winner : [true, false] }],
+          tournaments : [
+            {
+              place : "Ahmedabad",
+              date : "01-01-2020"
+            },
+            {
+              place : "Surat",
+              date : "01-01-2020"
+            },
+            {
+              place : "Ahmedabad",
+              date : "01-01-2021"
+            }
+          ]
+        },
+        {
+          weight : "dont ask",
+          winnerPrediction : [true, false, "not decided", false, true]
+        },
+        ["1", "2", "3"]
+      ],
+      demo : "demoentry"
+  };
+
+  try {
+    await mongoPracticeModel.create(obj1);
+    console.log("Data is added...");
+  } catch (error) {
+    console.log(error);
+  }
+})
+
+router.get("/firequery", async () => {
+  let queryResponse = await mongoPracticeModel.findOne();
+  console.log(queryResponse);
+  console.log(queryResponse.mixDataArray);
+
 });
 
 module.exports = router;

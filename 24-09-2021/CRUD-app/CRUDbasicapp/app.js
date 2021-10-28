@@ -5,14 +5,16 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var exphbs = require('express-handlebars');
-//mongoose
-const mongoose = require('mongoose');
 
-//DB comnnection
+
+// DB Code
+var mongoose = require('mongoose');
 mongoose.connect(
-  "mongodb://localhost:27017/crud",
-  () => {console.log("Connected to DB.");}
-
+  // "localhost:27017/crud-multiple",
+  "mongodb://crud-multiple:crud-multiple@localhost:27017/crud-multiple").then(
+    () => {console.log("Connected");}
+  ).catch(
+    (err) => {throw err;}
 );
 
 var indexRouter = require('./routes/index');
