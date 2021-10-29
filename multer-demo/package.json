@@ -8,12 +8,15 @@
   "dependencies": {
     "@supercharge/request-ip": "^1.1.2",
     "cookie-parser": "~1.4.4",
+    "csvtojson": "^2.0.10",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
     "mongoose": "^6.0.9",
     "morgan": "~1.9.1",
-    "multer": "^1.4.3"
+    "multer": "^1.4.3",
+    "path": "^0.12.7",
+    "qs": "^6.10.1"
   }
 }

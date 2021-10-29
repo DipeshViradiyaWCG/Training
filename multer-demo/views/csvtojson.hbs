@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        th, td{
+            padding: 10px;
+            border-spacing: 0px;
+        }
+        table {
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <div class="inputs">
+        <form enctype="multipart/form-data" id="form">
+            <input type="file" name="csvfile" id="csvfile"><br><br>
+            <input type="submit" value="Upload">
+        </form>
+        <br>
+        <span id="status"></span>
+        <br>
+        <div class="upload-status">
+            
+        </div>
+        <br>
+        <br>
+        <button id="storeData" style="float: right;" onclick="storeData()">Store data</button>
+        <table class="jsonDataTable" id="jsonDataTable">
+
+        </table>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="/javascripts/csvtojson.js"></script>
+
+</body>
+</html>
